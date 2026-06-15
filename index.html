@@ -6,7 +6,7 @@
 <title>Höflichkeits-Pass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --red:#E63B3B;
@@ -37,33 +37,22 @@
   .wrap{max-width:680px;margin:0 auto}
   .serif{font-family:'Fraunces',Georgia,serif}
 
-  /* ---------- top progress ---------- */
+  /* ---------- progress ---------- */
   .topbar{
     position:sticky;top:0;z-index:30;
     background:linear-gradient(var(--paper) 78%, transparent);
-    padding:18px 0 16px;margin-bottom:10px;
-    visibility:hidden;
+    padding:18px 0 16px;margin-bottom:10px;visibility:hidden;
   }
   .progress-row{display:flex;align-items:center;gap:14px}
-  .progress-track{
-    flex:1;height:8px;border-radius:99px;background:var(--hair);overflow:hidden;
-  }
-  .progress-fill{
-    height:100%;width:0%;background:var(--red);border-radius:99px;
-    transition:width .5s cubic-bezier(.4,0,.2,1);
-  }
-  .progress-count{
-    font-size:.8rem;font-weight:600;color:var(--muted);
-    white-space:nowrap;font-variant-numeric:tabular-nums;
-  }
+  .progress-track{flex:1;height:8px;border-radius:99px;background:var(--hair);overflow:hidden}
+  .progress-fill{height:100%;width:0%;background:var(--red);border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .progress-count{font-size:.8rem;font-weight:600;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
 
   /* ---------- card ---------- */
   .screen{display:none}
   .screen.active{display:block}
   .card{
-    background:var(--card);
-    border:1px solid var(--hair);
-    border-radius:18px;
+    background:var(--card);border:1px solid var(--hair);border-radius:18px;
     padding:38px 36px;
     box-shadow:0 1px 2px rgba(0,0,0,.03),0 12px 32px -12px rgba(0,0,0,.10);
     animation:rise .4s cubic-bezier(.2,.7,.3,1);
@@ -71,32 +60,22 @@
   @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
   /* ---------- welcome ---------- */
-  .eyebrow{
-    font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--red);margin-bottom:14px;
-  }
-  .hero-title{
-    font-family:'Fraunces',serif;font-weight:600;
-    font-size:2.7rem;line-height:1.05;letter-spacing:-.01em;margin-bottom:16px;
-  }
+  .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+  .hero-title{font-family:'Fraunces',serif;font-weight:600;font-size:2.7rem;line-height:1.05;letter-spacing:-.01em;margin-bottom:16px}
   .lead{font-size:1.06rem;color:var(--ink-soft);margin-bottom:26px;max-width:46ch}
   .rule{height:1px;background:var(--hair);margin:26px 0}
   .field{margin-bottom:16px}
   .field label{display:block;font-weight:600;margin-bottom:7px;font-size:.92rem;color:var(--ink)}
   .field input{
-    width:100%;font-family:'Inter';font-size:1.02rem;
-    padding:12px 15px;border:1px solid var(--hair);border-radius:11px;
-    background:var(--paper);transition:border-color .15s,background .15s;
+    width:100%;font-family:'Inter';font-size:1.02rem;padding:12px 15px;
+    border:1px solid var(--hair);border-radius:11px;background:var(--paper);
+    transition:border-color .15s,background .15s;
   }
   .field input:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--soft-bg)}
   .hint{font-size:.82rem;color:var(--muted);margin-top:18px}
 
   /* ---------- question ---------- */
-  .q-topic{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--red);margin-bottom:14px;
-  }
+  .q-topic{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
   .q-topic.blue{color:var(--blue)}
   .q-topic .dot{width:7px;height:7px;border-radius:50%;background:var(--red)}
   .q-topic.blue .dot{background:var(--blue)}
@@ -104,18 +83,19 @@
   .q-sub{color:var(--ink-soft);font-size:1rem;margin-bottom:8px}
   .scenario{
     background:var(--paper);border:1px solid var(--hair);border-left:3px solid var(--blue);
-    border-radius:10px;padding:14px 16px;margin:14px 0 6px;
-    font-size:.98rem;color:var(--ink-soft);
+    border-radius:10px;padding:14px 16px;margin:14px 0 6px;font-size:.98rem;color:var(--ink-soft);
   }
+  .scenario p{margin-bottom:8px}
+  .scenario p:last-child{margin-bottom:0}
   .q-instruction{font-size:.86rem;font-weight:600;color:var(--muted);margin:18px 0 12px}
 
   /* ---------- options ---------- */
   .options{display:flex;flex-direction:column;gap:10px}
   .opt{
     display:flex;align-items:flex-start;gap:13px;width:100%;text-align:left;cursor:pointer;
-    font-family:'Inter';font-size:1rem;color:var(--ink);
-    background:var(--card);border:1px solid var(--hair);border-radius:12px;
-    padding:14px 16px;transition:border-color .15s,background .15s,box-shadow .15s;
+    font-family:'Inter';font-size:1rem;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:12px;padding:14px 16px;
+    transition:border-color .15s,background .15s,box-shadow .15s;
   }
   .opt:hover:not(:disabled){border-color:var(--blue);background:#fff}
   .opt:disabled{cursor:default}
@@ -134,38 +114,26 @@
   .opt .tag{margin-left:auto;font-size:.72rem;font-weight:700;align-self:center;white-space:nowrap}
   .opt.correct .tag{color:var(--good)}
   .opt.wrong .tag{color:var(--red)}
-
-  /* multi-select checkbox look */
   .opt.multi .key{border-radius:6px}
 
   /* ---------- feedback ---------- */
-  .feedback{
-    margin-top:18px;border-radius:12px;padding:15px 17px;font-size:.96rem;
-    display:none;animation:rise .3s ease;border:1px solid transparent;
-  }
+  .feedback{margin-top:18px;border-radius:12px;padding:15px 17px;font-size:.96rem;display:none;animation:rise .3s ease;border:1px solid transparent}
   .feedback.show{display:block}
   .feedback.good{background:var(--good-bg);border-color:#CDE8D6;color:#0F5B30}
   .feedback.soft{background:var(--soft-bg);border-color:#D6DDFB;color:#22338C}
   .feedback .ftitle{font-weight:700;display:block;margin-bottom:3px;font-size:1rem}
 
-  /* ---------- open / reflection ---------- */
-  .reflect-note{
-    font-size:.8rem;color:var(--muted);margin-bottom:12px;font-style:italic;
-  }
+  /* ---------- open ---------- */
+  .reflect-note{font-size:.8rem;color:var(--muted);margin-bottom:12px;font-style:italic}
   textarea{
-    width:100%;font-family:'Inter';font-size:1rem;padding:13px 15px;
-    border:1px solid var(--hair);border-radius:12px;background:var(--paper);
-    min-height:110px;resize:vertical;line-height:1.55;
+    width:100%;font-family:'Inter';font-size:1rem;padding:13px 15px;border:1px solid var(--hair);
+    border-radius:12px;background:var(--paper);min-height:110px;resize:vertical;line-height:1.55;
   }
   textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--soft-bg)}
 
   /* ---------- buttons ---------- */
   .actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .btn{
-    font-family:'Inter';font-weight:600;font-size:1rem;color:#fff;background:var(--red);
-    border:none;border-radius:11px;padding:13px 26px;cursor:pointer;
-    transition:background .15s,transform .08s;
-  }
+  .btn{font-family:'Inter';font-weight:600;font-size:1rem;color:#fff;background:var(--red);border:none;border-radius:11px;padding:13px 26px;cursor:pointer;transition:background .15s,transform .08s}
   .btn:hover{background:var(--red-deep)}
   .btn:active{transform:translateY(1px)}
   .btn.blue{background:var(--blue)}
@@ -179,46 +147,70 @@
   .result-eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .result-title{font-family:'Fraunces',serif;font-weight:600;font-size:2.1rem;line-height:1.1;margin:6px 0 4px}
   .result-sub{color:var(--ink-soft);margin-bottom:18px}
-  .scoreline{
-    display:flex;align-items:baseline;justify-content:center;gap:8px;
-    font-family:'Fraunces',serif;margin-bottom:6px;
-  }
+  .scoreline{display:flex;align-items:baseline;justify-content:center;gap:8px;font-family:'Fraunces',serif;margin-bottom:6px}
   .scoreline .num{font-size:2.6rem;font-weight:600;line-height:1}
   .scoreline .den{font-size:1.1rem;color:var(--muted)}
   .breakdown{text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:22px}
+  .preview-label{text-align:center;font-size:.78rem;color:var(--muted);margin:18px 0 8px;letter-spacing:.04em;text-transform:uppercase;font-weight:700}
 
-  /* ---------- certificate ---------- */
+  /* ---------- A4 CERTIFICATE ---------- */
+  /* Rendered at A4 ratio (1:1.414). Width scales down responsively for preview;
+     html2canvas captures it at full resolution for printing. */
+  .cert-stage{display:flex;justify-content:center}
   .cert{
-    background:#fff;border:1px solid var(--hair);border-radius:14px;
-    padding:0;overflow:hidden;margin-top:8px;
+    width:794px;             /* A4 @ 96dpi */
+    height:1123px;
+    background:#fff;
+    position:relative;
+    border:1px solid var(--hair);
+    transform-origin:top center;
+    overflow:hidden;
+    font-family:'Inter',sans-serif;
   }
-  .cert-inner{padding:34px 34px 28px;position:relative}
-  .cert-bar{height:6px;width:100%;background:var(--red)}
-  .cert-bar.blue{background:var(--blue)}
-  .cert-head{
-    display:flex;justify-content:space-between;align-items:flex-start;
-    margin-bottom:24px;gap:16px;
-  }
-  .cert-kicker{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .cert-org{font-family:'Fraunces',serif;font-weight:600;font-size:1rem;margin-top:2px}
+  /* outer decorative frame */
+  .cert-frame{position:absolute;inset:34px;border:2px solid var(--ink);}
+  .cert-frame::before{content:"";position:absolute;inset:9px;border:1px solid var(--red);}
+  .cert-accent-top{position:absolute;top:0;left:0;right:0;height:14px;background:var(--red)}
+  .cert-accent-bottom{position:absolute;bottom:0;left:0;right:0;height:14px;background:var(--blue)}
+  .cert.talent .cert-accent-top{background:var(--blue)}
+  .cert.talent .cert-frame::before{border-color:var(--blue)}
+
+  .cert-pad{position:absolute;inset:34px;padding:64px 70px 56px;display:flex;flex-direction:column;text-align:center}
+  .cert-kicker{font-size:14px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .cert-org{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--ink)}
+  .cert-org .sep{color:var(--red);margin:0 8px}
+  .cert.talent .cert-org .sep{color:var(--blue)}
+
   .cert-medal{
-    flex:none;width:54px;height:54px;border-radius:50%;
-    border:2px solid var(--red);color:var(--red);
-    display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;
+    width:96px;height:96px;border-radius:50%;margin:38px auto 30px;
+    border:3px solid var(--red);display:grid;place-items:center;position:relative;
   }
-  .cert-medal.blue{border-color:var(--blue);color:var(--blue)}
-  .cert-award{font-size:.9rem;color:var(--ink-soft);margin-bottom:4px}
-  .cert-title{font-family:'Fraunces',serif;font-weight:700;font-size:2.3rem;line-height:1.05;letter-spacing:-.01em;color:var(--red);margin-bottom:18px}
-  .cert-title.blue{color:var(--blue)}
-  .cert-presented{font-size:.86rem;color:var(--muted);margin-bottom:6px}
-  .cert-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:6px}
-  .cert-class{font-size:.92rem;color:var(--ink-soft);margin-bottom:18px}
-  .cert-body{font-size:.95rem;color:var(--ink-soft);line-height:1.6;margin-bottom:26px;max-width:52ch}
-  .cert-sigs{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
-  .cert-sig{flex:1;min-width:120px;text-align:center}
-  .cert-sig .line{border-top:1px solid var(--ink);margin-bottom:6px}
-  .cert-sig .who{font-size:.78rem;color:var(--ink-soft);font-weight:500}
-  .cert-foot{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--muted);border-top:1px solid var(--hair);padding-top:14px;gap:12px}
+  .cert-medal::after{content:"";position:absolute;inset:7px;border-radius:50%;border:1px solid var(--red)}
+  .cert-medal .star{font-family:'Fraunces';font-weight:900;font-size:44px;color:var(--red);line-height:1}
+  .cert.talent .cert-medal{border-color:var(--blue)}
+  .cert.talent .cert-medal::after{border-color:var(--blue)}
+  .cert.talent .cert-medal .star{color:var(--blue)}
+
+  .cert-award{font-size:15px;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:10px}
+  .cert-title{font-family:'Fraunces';font-weight:900;font-size:58px;line-height:1;letter-spacing:-.01em;color:var(--red);margin-bottom:30px}
+  .cert.talent .cert-title{color:var(--blue)}
+  .cert-presented{font-size:15px;color:var(--muted);margin-bottom:14px}
+  .cert-name{font-family:'Fraunces';font-weight:600;font-size:40px;line-height:1.1;color:var(--ink);margin-bottom:8px}
+  .cert-name-line{width:62%;margin:0 auto 10px;border-bottom:1px solid var(--hair)}
+  .cert-class{font-size:16px;color:var(--ink-soft);margin-bottom:30px}
+  .cert-body{font-size:16px;line-height:1.7;color:var(--ink-soft);max-width:540px;margin:0 auto;flex:1}
+  .cert-score-badge{
+    display:inline-block;margin:18px auto 0;font-size:13px;font-weight:700;
+    color:var(--red);border:1.5px solid var(--red);border-radius:99px;padding:5px 16px;letter-spacing:.02em;
+  }
+  .cert.talent .cert-score-badge{color:var(--blue);border-color:var(--blue)}
+
+  .cert-sigs{display:flex;gap:30px;justify-content:center;margin-top:auto;padding-top:30px}
+  .cert-sig{flex:1;max-width:200px;text-align:center}
+  .cert-sig .line{border-top:1.5px solid var(--ink);margin-bottom:8px}
+  .cert-sig .who{font-size:14px;color:var(--ink);font-weight:600}
+  .cert-sig .role{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+  .cert-foot{font-size:12px;color:var(--muted);margin-top:26px;letter-spacing:.03em}
 
   .mini-note{font-size:.82rem;color:var(--muted);margin-top:16px;text-align:center}
   .center{text-align:center}
@@ -227,12 +219,21 @@
     .card{padding:28px 22px}
     .hero-title{font-size:2.1rem}
     .q-title{font-size:1.34rem}
-    .cert-inner{padding:24px 22px}
-    .cert-title{font-size:1.8rem}
-    .cert-sigs{gap:12px}
   }
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* ---------- print: only the certificate, full A4 ---------- */
+  @media print{
+    @page{size:A4 portrait;margin:0}
+    body{background:#fff;padding:0}
+    .topbar,.actions,.preview-label,.result-top,.mini-note{display:none!important}
+    .wrap{max-width:none;margin:0}
+    .card{border:none;box-shadow:none;padding:0;border-radius:0}
+    .cert-stage{display:block;height:auto!important}
+    .cert{
+      width:210mm!important;height:297mm!important;
+      transform:none!important;border:none!important;page-break-after:avoid;
+    }
   }
 </style>
 </head>
@@ -242,16 +243,16 @@
   <div class="topbar" id="topbar">
     <div class="progress-row">
       <div class="progress-track"><div class="progress-fill" id="pfill"></div></div>
-      <span class="progress-count" id="pcount">1 / 12</span>
+      <span class="progress-count" id="pcount">1 / 14</span>
     </div>
   </div>
 
-  <!-- ===== WELCOME ===== -->
+  <!-- WELCOME -->
   <section class="screen active" id="screen-welcome">
     <div class="card">
       <div class="eyebrow">Soziales Lernen · Urkunde</div>
       <h1 class="hero-title">Der Höflichkeits-<br>Pass</h1>
-      <p class="lead">Nach unserer Einheit zur Höflichkeit kannst du hier zeigen, dass du Respekt, faires Miteinander und gute Umgangsformen wirklich verstanden hast. Wer überzeugt, erhält die Urkunde <strong>Höflichkeits-Profi</strong>.</p>
+      <p class="lead">Nach unserer Einheit zur Höflichkeit kannst du hier zeigen, dass du Respekt, faires Miteinander und gute Umgangsformen wirklich verstanden hast. Wer überzeugt, erhält die Urkunde <strong>Höflichkeits-Profi</strong> zum Ausdrucken.</p>
       <div class="rule"></div>
       <div class="field">
         <label for="inName">Dein Name</label>
@@ -264,16 +265,16 @@
       <div class="actions">
         <button class="btn" id="startBtn" disabled>Beginnen</button>
       </div>
-      <p class="hint">Dauer etwa 15–20 Minuten. Manche Fragen sind knifflig – lies sie in Ruhe. Für die Profi-Urkunde brauchst du mindestens 80 % der bewerteten Aufgaben.</p>
+      <p class="hint">Dauer etwa 15–20 Minuten. Viele Fragen sind knifflig und haben mehr als eine plausible Antwort – lies sie genau. Für die Profi-Urkunde brauchst du mindestens 80 % der bewerteten Aufgaben.</p>
     </div>
   </section>
 
-  <!-- ===== QUIZ ===== -->
+  <!-- QUIZ -->
   <section class="screen" id="screen-quiz">
     <div class="card" id="quizCard"></div>
   </section>
 
-  <!-- ===== RESULT ===== -->
+  <!-- RESULT -->
   <section class="screen" id="screen-result">
     <div class="card">
       <div class="result-top">
@@ -284,36 +285,36 @@
         <div class="breakdown" id="resBreak"></div>
       </div>
 
-      <div class="cert" id="certificate">
-        <div class="cert-bar" id="certBar"></div>
-        <div class="cert-inner">
-          <div class="cert-head">
-            <div>
-              <div class="cert-kicker">Urkunde</div>
-              <div class="cert-org">Soziales Lernen</div>
+      <div class="preview-label">Vorschau deiner Urkunde (A4)</div>
+      <div class="cert-stage">
+        <div class="cert" id="certificate">
+          <div class="cert-accent-top"></div>
+          <div class="cert-accent-bottom"></div>
+          <div class="cert-frame"></div>
+          <div class="cert-pad">
+            <div class="cert-kicker">Urkunde</div>
+            <div class="cert-org">Soziales Lernen <span class="sep">·</span> Höflichkeit</div>
+            <div class="cert-medal"><span class="star" id="certStar">★</span></div>
+            <div class="cert-award">verliehen als</div>
+            <div class="cert-title" id="certTitle">Höflichkeits-Profi</div>
+            <div class="cert-presented">Diese Urkunde bestätigt, dass</div>
+            <div class="cert-name" id="certName">—</div>
+            <div class="cert-name-line"></div>
+            <div class="cert-class" id="certClass"></div>
+            <div class="cert-body" id="certBody"></div>
+            <div><span class="cert-score-badge" id="certScore"></span></div>
+            <div class="cert-sigs">
+              <div class="cert-sig"><div class="line"></div><div class="who">Frau Reiter</div><div class="role">Lehrerin</div></div>
+              <div class="cert-sig"><div class="line"></div><div class="who">Herr Weixelbaumer</div><div class="role">Lehrer</div></div>
+              <div class="cert-sig"><div class="line"></div><div class="who">Herr Eßbichl</div><div class="role">Lehrer</div></div>
             </div>
-            <div class="cert-medal" id="certMedal">✓</div>
-          </div>
-          <div class="cert-award">verliehen als</div>
-          <div class="cert-title" id="certTitle">Höflichkeits-Profi</div>
-          <div class="cert-presented">Diese Urkunde bestätigt, dass</div>
-          <div class="cert-name" id="certName">—</div>
-          <div class="cert-class" id="certClass"></div>
-          <div class="cert-body" id="certBody"></div>
-          <div class="cert-sigs">
-            <div class="cert-sig"><div class="line"></div><div class="who">Frau Reiter</div></div>
-            <div class="cert-sig"><div class="line"></div><div class="who">Herr Weixelbaumer</div></div>
-            <div class="cert-sig"><div class="line"></div><div class="who">Herr Eßbichl</div></div>
-          </div>
-          <div class="cert-foot">
-            <span id="certDate"></span>
-            <span id="certScore"></span>
+            <div class="cert-foot" id="certDate"></div>
           </div>
         </div>
       </div>
 
       <div class="actions" style="justify-content:center">
-        <button class="btn" id="downloadBtn">Urkunde herunterladen</button>
+        <button class="btn" id="downloadBtn">Urkunde herunterladen (A4)</button>
         <button class="btn ghost" id="retryBtn">Nochmal versuchen</button>
       </div>
       <p class="mini-note" id="retryNote"></p>
@@ -323,16 +324,15 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 (function(){
   "use strict";
 
   /* ============================================================
-     AUFGABEN
-     scored:true  -> zählt für die Urkunde (richtig/falsch bewertbar)
-     scored:false -> reine Reflexion, kein Punkt
-     Typen: 'single' (eine beste Antwort) | 'multi' (mehrere richtig)
-            | 'open' (freitext, unbewertet)
+     AUFGABEN – anspruchsvoller, gemischte Typen
+     scored:true zählt für die Urkunde; scored:false = Reflexion
+     single = eine beste Antwort | multi = mehrere richtig | open = freitext
   ============================================================ */
   const QUESTIONS = [
     {
@@ -368,7 +368,7 @@
     {
       type:'multi', scored:true, topic:'Höflichkeit beim Lernen',
       q:'Warum hilft Höflichkeit beim Lernen?',
-      sub:'Mehrere Antworten sind richtig. Wähle alle aus, die wirklich stimmen.',
+      sub:'Mehrere Antworten sind richtig. Wähle alle aus, die wirklich stimmen – und nur die.',
       options:[
         'Sie schafft einen sicheren Ort, an dem sich alle wohlfühlen.',
         'Sie sorgt dafür, dass nur die Besten mitreden dürfen.',
@@ -380,49 +380,64 @@
       fbBad:'Richtig sind A, C und D. B passt nicht: Höflichkeit soll niemanden ausschließen, sondern allen einen sicheren Platz geben.'
     },
     {
-      type:'single', scored:true, topic:'Pünktlichkeit',
-      q:'Zu spät – aber wie?',
-      scenario:'Du kommst 10 Minuten zu spät, die Stunde läuft schon. Vier Reaktionen wären denkbar.',
-      sub:'Welche zeigt den meisten Respekt gegenüber der Klasse?',
+      type:'single', scored:true, topic:'Pünktlichkeit & Abwägen',
+      q:'Zwei gute Optionen – welche ist besser?',
+      scenario:'Du kommst zu spät, weil du einer gestürzten Person geholfen hast. Die Stunde läuft schon. Beide folgenden Reaktionen sind nicht schlecht.',
+      sub:'Welche ist trotzdem die rücksichtsvollere – und warum?',
       options:[
-        'Laut hereinkommen und gleich erklären, warum du zu spät bist.',
-        'Leise hereinkommen, dich kurz und still entschuldigen, rasch einsteigen.',
-        'Vor der Tür warten, bis die Stunde vorbei ist.',
-        'Hereinkommen und die Sitznachbarin fragen, was du verpasst hast.'
+        'Sofort laut erklären, warum du zu spät bist, damit es kein Missverständnis gibt.',
+        'Leise hinsetzen, einsteigen und der Lehrkraft den Grund in der Pause ruhig erklären.',
+        'Gar nichts sagen und den Grund für dich behalten.',
+        'Draußen warten, bis dich jemand holt.'
       ],
       correct:1,
-      fbGood:'Genau. Leise und kurz – so störst du den Lernfluss der anderen am wenigsten. Nachfragen kannst du später.',
-      fbBad:'B ist am rücksichtsvollsten. A und D unterbrechen den Unterricht, C lässt dich noch mehr verpassen. Die Erklärung kann warten.'
+      fbGood:'Genau. Dein Grund ist gut – aber den Lernfluss unterbrichst du am wenigsten, wenn du leise einsteigst und es später erklärst. Rücksicht und Ehrlichkeit lassen sich verbinden.',
+      fbBad:'A ist ehrlich, stört aber die Klasse mitten im Unterricht. Besser ist B: leise einsteigen und den guten Grund in der Pause erklären – so verbindest du Rücksicht und Ehrlichkeit.'
     },
     {
       type:'single', scored:true, topic:'Wortwahl',
-      q:'Sachlich bleiben im Streit',
-      scenario:'In einer Diskussion sagt jemand etwas, das du für falsch hältst.',
-      sub:'Welche Antwort bleibt sachlich, ohne persönlich zu werden?',
+      q:'Was ist hier das eigentliche Problem?',
+      scenario:'Lena sagt in der Gruppenarbeit: „Also ich finde deine Idee total daneben, aber egal, machen wir halt deine.“',
+      sub:'Woran scheitert dieser Satz, obwohl Lena ja sogar nachgibt?',
       options:[
-        '„Das ist doch Quatsch, das weiß jeder.“',
-        '„Ich sehe das anders, weil ich dazu Folgendes gelesen habe …“',
-        '„Typisch, dass gerade du das sagst.“',
-        '„Du verstehst das einfach nicht.“'
+        'Sie gibt zu schnell nach.',
+        'Sie wertet die Idee (und damit die Person) ab, statt sachlich zu begründen.',
+        'Sie hätte gar nichts sagen sollen.',
+        'Sie spricht zu leise.'
       ],
       correct:1,
-      fbGood:'Richtig. Eine Ich-Botschaft mit Begründung greift die Sache an, nicht die Person.',
-      fbBad:'Nur B bleibt bei der Sache. A, C und D zielen auf die Person – das eskaliert den Streit, statt ihn zu klären.'
+      fbGood:'Genau erkannt. Das Nachgeben ist nicht das Problem – die abwertende Wortwahl ist es. „Ich sehe das anders, weil …“ wäre fair.',
+      fbBad:'Das Problem ist nicht, dass Lena nachgibt, sondern wie sie es sagt: „total daneben“ wertet ab. Fair wäre eine sachliche Begründung statt eines Urteils über die Idee.'
     },
     {
       type:'single', scored:true, topic:'Private Gegenstände',
       q:'Wohin mit dem Handy?',
-      scenario:'Der Unterricht beginnt. Dein Handy ist in deiner Hosentasche.',
+      scenario:'Der Unterricht beginnt. Dein Handy ist in deiner Hosentasche und vibriert ab und zu.',
       sub:'Wo gehört es während des Unterrichts hin?',
       options:[
-        'Offen auf den Tisch, falls eine Nachricht kommt.',
+        'Offen auf den Tisch, falls etwas Wichtiges kommt.',
         'In die Handylade oder in den Spind.',
         'In die Hosentasche, das reicht.',
-        'In die Hand, aber unter den Tisch.'
+        'In die Hand, aber unter dem Tisch.'
       ],
       correct:1,
-      fbGood:'Richtig. In der Handylade oder im Spind kann es weder dich noch andere ablenken.',
-      fbBad:'Die richtige Antwort ist B: Handylade oder Spind. In Tasche oder Hand bleibt die Ablenkung immer in Reichweite.'
+      fbGood:'Richtig. In der Handylade oder im Spind kann es weder dich noch andere ablenken – auch nicht durch Vibrieren.',
+      fbBad:'Die richtige Antwort ist B: Handylade oder Spind. In Tasche oder Hand bleibt die Ablenkung in Reichweite – das Vibrieren stört dich weiter.'
+    },
+    {
+      type:'multi', scored:true, topic:'Distanz & Raum',
+      q:'Rücksicht auf Raum und Platz',
+      scenario:'Ihr arbeitet zu zweit an einem Tisch. Es wird eng.',
+      sub:'Welche Verhaltensweisen zeigen echte Rücksicht? Wähle alle richtigen aus.',
+      options:[
+        'Ich breite meine Sachen so aus, wie es für mich am bequemsten ist.',
+        'Ich achte darauf, dass mein*e Sitznachbar*in genug Platz zum Arbeiten hat.',
+        'Ich halte einen angenehmen Abstand, statt zu nah heranzurücken.',
+        'Ich rede die ganze Zeit, auch wenn der/die andere sich konzentrieren will.'
+      ],
+      correctSet:[1,2],
+      fbGood:'Sehr gut. Rücksicht heißt: Platz teilen und Abstand wahren. Es geht nicht immer nur um die eigenen Bedürfnisse.',
+      fbBad:'Richtig sind B und C. A und D stellen die eigenen Bedürfnisse über die der anderen – das Gegenteil von Rücksicht. Auch der/die Nachbar*in braucht Raum und Ruhe.'
     },
     {
       type:'single', scored:true, topic:'Eigentum & Ehrlichkeit',
@@ -440,6 +455,21 @@
       fbBad:'C ist richtig. A, B und D sind Lügen – und eine Lüge macht Probleme meistens größer. Ehrlichkeit heißt, Verantwortung zu übernehmen.'
     },
     {
+      type:'single', scored:true, topic:'Ehrlichkeit',
+      q:'Ehrlich heißt nicht „alles ungefiltert sagen“',
+      scenario:'Dein Freund zeigt dir stolz seine Zeichnung. Du findest sie nicht besonders gelungen. Er fragt: „Und, wie findest du sie?“',
+      sub:'Welche Antwort ist ehrlich UND fair?',
+      options:[
+        '„Ehrlich gesagt ziemlich schlecht.“',
+        '„Super, total toll!“ – obwohl du das nicht meinst.',
+        '„Mir gefällt die Idee. An den Schatten könntest du noch arbeiten – soll ich zeigen, wie?“',
+        'Gar nicht antworten und das Thema wechseln.'
+      ],
+      correct:2,
+      fbGood:'Stark. Ehrlichkeit bedeutet nicht, alles ungefiltert zu sagen, sondern fair und hilfreich zu bleiben. C ist ehrlich und respektvoll zugleich.',
+      fbBad:'A ist verletzend, B ist gelogen, D weicht aus. Ehrlich UND fair ist C: etwas Echtes sagen, aber konstruktiv und respektvoll.'
+    },
+    {
       type:'multi', scored:true, topic:'Petzen oder Hilfe holen',
       q:'Hilfe holen – woran erkennst du das?',
       scenario:'Du überlegst, ob du einer erwachsenen Person etwas erzählen sollst.',
@@ -455,19 +485,34 @@
       fbBad:'Richtig sind A und C. B will schaden (= petzen), und D beruht auf einem Gerücht. Hilfe holen schützt jemanden und stützt sich auf das, was du selbst weißt.'
     },
     {
-      type:'single', scored:true, topic:'Weitererzählen',
-      q:'Drei Fragen vor dem Weitererzählen',
-      scenario:'Eine Freundin hat dir etwas anvertraut. In der Pause fragt jemand neugierig nach.',
-      sub:'Nach welchem Maßstab entscheidest du, ob du etwas über andere weitererzählst?',
+      type:'single', scored:true, topic:'Petzen oder Hilfe holen',
+      q:'Der schwierige Grenzfall',
+      scenario:'Ein Mitschüler erzählt dir im Vertrauen, dass er sich seit Tagen nicht in die Schule traut, weil ihn jemand bedroht. Er bittet dich: „Sag bitte niemandem etwas.“',
+      sub:'Was tust du – und warum ist das hier kein Vertrauensbruch?',
       options:[
-        'Nur wenn es spannend genug ist.',
-        'Nur wenn es notwendig, wahr und fair ist.',
-        'Immer, wenn jemand direkt fragt.',
-        'Nur wenn meine beste Freundin es auch erfährt.'
+        'Ich schweige, weil ich es ihm versprochen habe.',
+        'Ich hole trotzdem Hilfe bei einer erwachsenen Person, weil er ernsthaft in Gefahr ist.',
+        'Ich erzähle es nur meinen Freunden, damit wir ihn beschützen.',
+        'Ich rede ihm ein, dass das schon nicht so schlimm ist.'
       ],
       correct:1,
-      fbGood:'Richtig. Notwendig, wahr und fair – diese drei Fragen schützen andere und dich selbst. Weitererzähltes kann man nicht zurückholen.',
-      fbBad:'Die richtige Antwort ist B. Nur wenn etwas notwendig, wahr und fair ist, erzählt man es weiter – Neugier oder eine direkte Frage allein reichen nicht.'
+      fbGood:'Richtig – und das ist der schwierigste Punkt der ganzen Einheit. Wenn jemand ernsthaft in Gefahr ist, ist Hilfe holen wichtiger als ein Versprechen. Du verrätst ihn nicht, du schützt ihn.',
+      fbBad:'Hier geht es um Sicherheit. Ein Versprechen (A) oder es im Freundeskreis verbreiten (C) hilft ihm nicht; D macht es kleiner, als es ist. Richtig ist B: Bei ernster Gefahr Hilfe holen – das ist Schutz, kein Verrat.'
+    },
+    {
+      type:'single', scored:true, topic:'Weitererzählen',
+      q:'Drei Fragen vor dem Weitererzählen',
+      scenario:'Du weißt etwas über eine Mitschülerin, das stimmt und das du selbst beobachtet hast. Jemand fragt neugierig nach. Es würde sie aber bloßstellen und ist für niemanden wichtig.',
+      sub:'Erzählst du es weiter? Wähle die beste Begründung.',
+      options:[
+        'Ja, denn es ist ja wahr.',
+        'Ja, denn ich habe es selbst gesehen.',
+        'Nein, denn es ist zwar wahr, aber weder notwendig noch fair.',
+        'Nein, aber nur weil ich keine Lust habe.'
+      ],
+      correct:2,
+      fbGood:'Sehr genau. Wahr allein reicht nicht – alle drei müssen zutreffen: notwendig, wahr UND fair. Hier fehlen zwei davon.',
+      fbBad:'Achtung, das ist die Falle: Etwas darf wahr sein und du hast es selbst gesehen – trotzdem erzählst du es nicht, wenn es nicht notwendig und nicht fair ist. Alle drei müssen zutreffen. Richtig ist C.'
     },
     {
       type:'single', scored:true, topic:'Eigene Verantwortung',
@@ -503,7 +548,6 @@
   const PASS_PERCENT = 80;
   const scoredCount = QUESTIONS.filter(q=>q.scored).length;
 
-  // ---- state ----
   let idx=0, score=0, answered=false;
   let student={name:'',klass:''};
 
@@ -517,7 +561,7 @@
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  // ---- welcome ----
+  // welcome
   const inName=$('inName'), inClass=$('inClass'), startBtn=$('startBtn');
   const checkStart=()=>{ startBtn.disabled = inName.value.trim().length<1; };
   inName.addEventListener('input',checkStart);
@@ -531,14 +575,11 @@
     show('quiz'); render();
   });
 
-  // ---- progress ----
   function updateProgress(){
-    const pct=(idx/QUESTIONS.length)*100;
-    $('pfill').style.width=pct+'%';
+    $('pfill').style.width=((idx/QUESTIONS.length)*100)+'%';
     $('pcount').textContent=(idx+1)+' / '+QUESTIONS.length;
   }
 
-  // ---- render ----
   function render(){
     answered=false; updateProgress();
     const item=QUESTIONS[idx];
@@ -546,7 +587,7 @@
     let html='';
     html+=`<div class="q-topic ${isBlue?'blue':''}"><span class="dot"></span>${item.topic}</div>`;
     html+=`<div class="q-title">${item.q}</div>`;
-    if(item.scenario) html+=`<div class="scenario">${item.scenario}</div>`;
+    if(item.scenario) html+=`<div class="scenario"><p>${item.scenario}</p></div>`;
     if(item.sub) html+=`<div class="q-sub">${item.sub}</div>`;
 
     if(item.type==='single'||item.type==='multi'){
@@ -561,15 +602,14 @@
       if(item.reflectNote) html+=`<div class="reflect-note">${item.reflectNote}</div>`;
       html+=`<textarea id="openText" placeholder="${item.placeholder||''}"></textarea>`;
     }
-
     html+=`<div class="feedback" id="fb"></div>`;
     html+=`<div class="actions"><button class="btn ${isBlue?'blue':''}" id="actBtn">${item.type==='open'?'Weiter':'Antwort prüfen'}</button></div>`;
     quizCard.innerHTML=html;
     quizCard.style.animation='none'; void quizCard.offsetWidth; quizCard.style.animation='';
-    wire(item,isBlue,idx===QUESTIONS.length-1);
+    wire(item,idx===QUESTIONS.length-1);
   }
 
-  function wire(item,isBlue,last){
+  function wire(item,last){
     const actBtn=$('actBtn');
     const advanceLabel = last ? 'Zum Ergebnis' : 'Weiter';
 
@@ -577,8 +617,7 @@
       let chosen=null;
       const opts=[...document.querySelectorAll('.opt')];
       opts.forEach(b=>b.addEventListener('click',()=>{
-        if(answered) return;
-        chosen=+b.dataset.i;
+        if(answered) return; chosen=+b.dataset.i;
         opts.forEach(o=>o.classList.remove('sel')); b.classList.add('sel');
       }));
       actBtn.addEventListener('click',()=>{
@@ -608,13 +647,13 @@
         if(answered){ next(); return; }
         if(sel.size===0){ shake(actBtn); return; }
         answered=true;
-        const correctSet=new Set(item.correctSet);
-        let ok=sel.size===correctSet.size;
-        sel.forEach(i=>{ if(!correctSet.has(i)) ok=false; });
+        const cs=new Set(item.correctSet);
+        let ok=sel.size===cs.size;
+        sel.forEach(i=>{ if(!cs.has(i)) ok=false; });
         opts.forEach((o,i)=>{
           o.disabled=true; o.classList.remove('sel');
           const key=o.querySelector('.key');
-          if(correctSet.has(i)){ o.classList.add('correct'); key.textContent='✓'; o.innerHTML+='<span class="tag">richtig</span>'; }
+          if(cs.has(i)){ o.classList.add('correct'); key.textContent='✓'; o.innerHTML+='<span class="tag">richtig</span>'; }
           else if(sel.has(i)){ o.classList.add('wrong'); key.textContent='✕'; o.innerHTML+='<span class="tag">nicht richtig</span>'; }
           else o.classList.add('dim');
         });
@@ -650,7 +689,6 @@
 
   function next(){ idx++; if(idx>=QUESTIONS.length) finish(); else render(); }
 
-  // ---- result ----
   function finish(){
     $('pfill').style.width='100%';
     $('pcount').textContent=QUESTIONS.length+' / '+QUESTIONS.length;
@@ -663,50 +701,88 @@
 
     const d=new Date();
     const dateStr=d.toLocaleDateString('de-AT',{day:'numeric',month:'long',year:'numeric'});
+    const cert=$('certificate');
 
     $('certName').textContent=student.name||'—';
     $('certClass').textContent=student.klass?('Klasse '+student.klass):'';
     $('certDate').textContent='Ausgestellt am '+dateStr;
-    $('certScore').textContent=score+' / '+scoredCount+' Punkten';
+    $('certScore').textContent=score+' von '+scoredCount+' Aufgaben richtig';
 
     if(passed){
+      cert.classList.remove('talent');
       $('resEyebrow').textContent='Bestanden';
       $('resTitle').textContent='Du hast es geschafft.';
       $('resSub').textContent='Deine Antworten zeigen: Du hast Höflichkeit wirklich verstanden.';
-      $('certBar').className='cert-bar';
-      $('certMedal').className='cert-medal'; $('certMedal').textContent='✓';
-      $('certTitle').className='cert-title'; $('certTitle').textContent='Höflichkeits-Profi';
-      $('certBody').textContent='im Rahmen der Einheit zum sozialen Lernen ein sicheres Verständnis für Respekt, faires Miteinander und gute Umgangsformen gezeigt hat – im Denken wie im Handeln.';
+      $('certStar').textContent='★';
+      $('certTitle').textContent='Höflichkeits-Profi';
+      $('certBody').textContent='im Rahmen der Einheit zum sozialen Lernen ein sicheres Verständnis für Respekt, faires Miteinander und gute Umgangsformen gezeigt hat – im Denken wie im Handeln. Diese Urkunde würdigt nicht nur Wissen, sondern Haltung.';
       $('retryNote').textContent='';
     } else {
+      cert.classList.add('talent');
       $('resEyebrow').textContent='Fast geschafft';
       $('resTitle').textContent='Schon richtig gut.';
       $('resSub').textContent='Für die Profi-Urkunde fehlt nur noch ein kleines Stück.';
-      $('certBar').className='cert-bar blue';
-      $('certMedal').className='cert-medal blue'; $('certMedal').textContent='→';
-      $('certTitle').className='cert-title blue'; $('certTitle').textContent='Höflichkeits-Talent';
+      $('certStar').textContent='↗';
+      $('certTitle').textContent='Höflichkeits-Talent';
       $('certBody').textContent='sich in der Einheit zum sozialen Lernen engagiert mit Respekt und fairem Miteinander auseinandergesetzt hat und auf dem besten Weg zum Höflichkeits-Profi ist.';
       $('retryNote').textContent='Tipp: Ab 80 % gibt es die Profi-Urkunde. Sieh dir die Erklärungen noch einmal an und versuch es erneut.';
     }
     show('result');
+    scaleCertPreview();
   }
 
+  // scale the A4 cert down to fit the card width (preview only)
+  function scaleCertPreview(){
+    const cert=$('certificate');
+    const stage=cert.parentElement;
+    const avail=stage.clientWidth;
+    const scale=Math.min(1, avail/794);
+    cert.style.transform='scale('+scale+')';
+    // collapse the visual gap created by scaling
+    stage.style.height=(1123*scale)+'px';
+  }
+  window.addEventListener('resize',()=>{ if(screens.result.classList.contains('active')) scaleCertPreview(); });
+
   $('retryBtn').addEventListener('click',()=>{
-    idx=0; score=0; answered=false;
-    show('quiz'); render();
+    idx=0; score=0; answered=false; show('quiz'); render();
   });
 
-  // ---- download ----
+  // ---- download as A4 PDF (mit Fallbacks) ----
   $('downloadBtn').addEventListener('click',()=>{
     const cert=$('certificate'), btn=$('downloadBtn');
+
+    // Falls die Bild-Bibliothek nicht geladen ist (z. B. Schulnetz blockiert
+    // das CDN): direkt den Browser-Druckdialog nutzen – dort kann man
+    // "Als PDF speichern" wählen. Die Urkunde ist via @media print A4-formatiert.
+    if(typeof window.html2canvas==='undefined'){
+      window.print();
+      return;
+    }
+
     const label=btn.textContent; btn.textContent='Wird erstellt …'; btn.disabled=true;
-    html2canvas(cert,{scale:2,backgroundColor:'#ffffff',useCORS:true}).then(canvas=>{
-      const link=document.createElement('a');
+    const prevTransform=cert.style.transform;
+    cert.style.transform='none';
+    html2canvas(cert,{scale:2,backgroundColor:'#ffffff',useCORS:true,width:794,height:1123,windowWidth:794,windowHeight:1123}).then(canvas=>{
+      cert.style.transform=prevTransform;
       const safe=(student.name||'Hoeflichkeit').replace(/[^a-zA-Z0-9äöüÄÖÜß]/g,'_');
-      link.download='Hoeflichkeits-Urkunde_'+safe+'.png';
-      link.href=canvas.toDataURL('image/png'); link.click();
+      const img=canvas.toDataURL('image/png');
+      if(window.jspdf && window.jspdf.jsPDF){
+        const { jsPDF } = window.jspdf;
+        const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+        pdf.addImage(img,'PNG',0,0,210,297);
+        pdf.save('Hoeflichkeits-Urkunde_'+safe+'.pdf');
+      } else {
+        const link=document.createElement('a');
+        link.download='Hoeflichkeits-Urkunde_'+safe+'.png';
+        link.href=img; link.click();
+      }
       btn.textContent=label; btn.disabled=false;
-    }).catch(()=>{ btn.textContent='Nochmal versuchen'; btn.disabled=false; });
+    }).catch(()=>{
+      cert.style.transform=prevTransform;
+      // letzter Ausweg: drucken
+      window.print();
+      btn.textContent=label; btn.disabled=false;
+    });
   });
 
 })();
