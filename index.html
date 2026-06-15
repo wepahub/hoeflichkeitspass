@@ -6,213 +6,230 @@
 <title>Höflichkeits-Pass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --red:#E63B3B;
-    --red-soft:#FBE4E2;
+    --red-deep:#C42A2A;
     --blue:#2F55F5;
-    --blue-soft:#E3E8FF;
-    --ink:#1A1A1A;
-    --paper:#FBF7F4;
-    --line:#1A1A1A;
-    --grey:#6A6A6A;
+    --blue-deep:#1E3FCC;
+    --ink:#161616;
+    --ink-soft:#4A4A4A;
+    --muted:#8A8A8A;
+    --paper:#FCFAF7;
+    --card:#FFFFFF;
+    --hair:#E6E1DA;
+    --good:#1F8A4C;
+    --good-bg:#EAF6EE;
+    --soft-bg:#EEF1FE;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
   body{
-    font-family:'Nunito',system-ui,sans-serif;
+    font-family:'Inter',system-ui,sans-serif;
     background:var(--paper);
     color:var(--ink);
-    line-height:1.55;
+    line-height:1.6;
     min-height:100vh;
-    padding:20px 16px 60px;
-    overflow-x:hidden;
+    padding:0 18px 80px;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:760px;margin:0 auto}
-  h1,h2,h3,.display{font-family:'Fredoka',sans-serif}
+  .wrap{max-width:680px;margin:0 auto}
+  .serif{font-family:'Fraunces',Georgia,serif}
 
-  /* ---------- Progress bar ---------- */
+  /* ---------- top progress ---------- */
   .topbar{
     position:sticky;top:0;z-index:30;
-    background:var(--paper);
-    padding:10px 0 12px;
-    margin-bottom:8px;
+    background:linear-gradient(var(--paper) 78%, transparent);
+    padding:18px 0 16px;margin-bottom:10px;
+    visibility:hidden;
   }
+  .progress-row{display:flex;align-items:center;gap:14px}
   .progress-track{
-    height:14px;border:3px solid var(--line);border-radius:20px;
-    background:#fff;overflow:hidden;
+    flex:1;height:8px;border-radius:99px;background:var(--hair);overflow:hidden;
   }
   .progress-fill{
-    height:100%;width:0%;
-    background:var(--red);
-    border-radius:20px;
-    transition:width .45s cubic-bezier(.34,1.56,.64,1);
+    height:100%;width:0%;background:var(--red);border-radius:99px;
+    transition:width .5s cubic-bezier(.4,0,.2,1);
   }
-  .progress-label{
-    display:flex;justify-content:space-between;align-items:center;
-    font-weight:700;font-size:.82rem;color:var(--grey);
-    margin-top:6px;
+  .progress-count{
+    font-size:.8rem;font-weight:600;color:var(--muted);
+    white-space:nowrap;font-variant-numeric:tabular-nums;
   }
-  .hearts{letter-spacing:2px;font-size:.95rem}
 
-  /* ---------- Card ---------- */
-  .card{
-    background:#fff;
-    border:4px solid var(--line);
-    border-radius:22px;
-    padding:26px 24px;
-    box-shadow:8px 8px 0 var(--line);
-    animation:pop .35s cubic-bezier(.34,1.56,.64,1);
-  }
-  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+  /* ---------- card ---------- */
   .screen{display:none}
   .screen.active{display:block}
-
-  /* ---------- Badge ---------- */
-  .badge{
-    display:inline-block;
-    font-family:'Fredoka';font-weight:700;
-    color:#fff;background:var(--red);
-    padding:3px 14px;border-radius:8px;
-    font-size:.9rem;margin-bottom:14px;
-    border:3px solid var(--line);
+  .card{
+    background:var(--card);
+    border:1px solid var(--hair);
+    border-radius:18px;
+    padding:38px 36px;
+    box-shadow:0 1px 2px rgba(0,0,0,.03),0 12px 32px -12px rgba(0,0,0,.10);
+    animation:rise .4s cubic-bezier(.2,.7,.3,1);
   }
-  .badge.blue{background:var(--blue)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-  .q-title{font-size:1.5rem;line-height:1.2;margin-bottom:6px;font-weight:600}
-  .q-sub{color:var(--grey);font-weight:600;margin-bottom:18px;font-size:.98rem}
-
-  /* ---------- Welcome ---------- */
-  .hero-emoji{font-size:3.4rem;line-height:1;margin-bottom:6px}
-  .hero-title{font-size:2.7rem;line-height:1;font-weight:700;margin-bottom:10px}
-  .hero-title .r{color:var(--red)}
-  .hero-title .b{color:var(--blue)}
-  .lead{font-size:1.05rem;color:var(--ink);margin-bottom:22px;font-weight:600}
-  .field{margin-bottom:14px}
-  .field label{display:block;font-weight:800;margin-bottom:6px;font-size:.95rem}
+  /* ---------- welcome ---------- */
+  .eyebrow{
+    font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--red);margin-bottom:14px;
+  }
+  .hero-title{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:2.7rem;line-height:1.05;letter-spacing:-.01em;margin-bottom:16px;
+  }
+  .lead{font-size:1.06rem;color:var(--ink-soft);margin-bottom:26px;max-width:46ch}
+  .rule{height:1px;background:var(--hair);margin:26px 0}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-weight:600;margin-bottom:7px;font-size:.92rem;color:var(--ink)}
   .field input{
-    width:100%;font-family:'Nunito';font-size:1.05rem;font-weight:700;
-    padding:13px 16px;border:3px solid var(--line);border-radius:14px;
-    background:var(--paper);
+    width:100%;font-family:'Inter';font-size:1.02rem;
+    padding:12px 15px;border:1px solid var(--hair);border-radius:11px;
+    background:var(--paper);transition:border-color .15s,background .15s;
   }
-  .field input:focus{outline:none;border-color:var(--blue);background:#fff}
+  .field input:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--soft-bg)}
+  .hint{font-size:.82rem;color:var(--muted);margin-top:18px}
 
-  /* ---------- Options ---------- */
-  .options{display:flex;flex-direction:column;gap:11px;margin-bottom:8px}
-  .opt{
-    display:flex;align-items:center;gap:13px;
-    width:100%;text-align:left;cursor:pointer;
-    font-family:'Nunito';font-size:1.02rem;font-weight:700;color:var(--ink);
-    background:var(--paper);
-    border:3px solid var(--line);border-radius:14px;
-    padding:14px 16px;
-    transition:transform .12s, background .15s;
+  /* ---------- question ---------- */
+  .q-topic{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--red);margin-bottom:14px;
   }
-  .opt:hover:not(:disabled){transform:translateX(4px);background:#fff}
+  .q-topic.blue{color:var(--blue)}
+  .q-topic .dot{width:7px;height:7px;border-radius:50%;background:var(--red)}
+  .q-topic.blue .dot{background:var(--blue)}
+  .q-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.6rem;line-height:1.22;margin-bottom:8px;letter-spacing:-.01em}
+  .q-sub{color:var(--ink-soft);font-size:1rem;margin-bottom:8px}
+  .scenario{
+    background:var(--paper);border:1px solid var(--hair);border-left:3px solid var(--blue);
+    border-radius:10px;padding:14px 16px;margin:14px 0 6px;
+    font-size:.98rem;color:var(--ink-soft);
+  }
+  .q-instruction{font-size:.86rem;font-weight:600;color:var(--muted);margin:18px 0 12px}
+
+  /* ---------- options ---------- */
+  .options{display:flex;flex-direction:column;gap:10px}
+  .opt{
+    display:flex;align-items:flex-start;gap:13px;width:100%;text-align:left;cursor:pointer;
+    font-family:'Inter';font-size:1rem;color:var(--ink);
+    background:var(--card);border:1px solid var(--hair);border-radius:12px;
+    padding:14px 16px;transition:border-color .15s,background .15s,box-shadow .15s;
+  }
+  .opt:hover:not(:disabled){border-color:var(--blue);background:#fff}
   .opt:disabled{cursor:default}
   .opt .key{
-    flex:none;width:30px;height:30px;border-radius:8px;
-    display:grid;place-items:center;
-    font-family:'Fredoka';font-weight:700;color:#fff;background:var(--blue);
-    border:2px solid var(--line);font-size:.95rem;
+    flex:none;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;
+    font-size:.84rem;font-weight:700;color:var(--ink-soft);background:var(--paper);
+    border:1px solid var(--hair);transition:all .15s;margin-top:1px;
   }
-  .opt.correct{background:#DFF5E1;border-color:#2e8b3d}
-  .opt.correct .key{background:#2e8b3d}
-  .opt.wrong{background:#FBE0DE;border-color:var(--red)}
-  .opt.wrong .key{background:var(--red)}
-  .opt.dim{opacity:.5}
+  .opt.sel{border-color:var(--blue);box-shadow:0 0 0 3px var(--soft-bg)}
+  .opt.sel .key{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .opt.correct{border-color:var(--good);background:var(--good-bg)}
+  .opt.correct .key{background:var(--good);color:#fff;border-color:var(--good)}
+  .opt.wrong{border-color:var(--red);background:#FCEDEC}
+  .opt.wrong .key{background:var(--red);color:#fff;border-color:var(--red)}
+  .opt.dim{opacity:.45}
+  .opt .tag{margin-left:auto;font-size:.72rem;font-weight:700;align-self:center;white-space:nowrap}
+  .opt.correct .tag{color:var(--good)}
+  .opt.wrong .tag{color:var(--red)}
 
-  /* ---------- Feedback ---------- */
+  /* multi-select checkbox look */
+  .opt.multi .key{border-radius:6px}
+
+  /* ---------- feedback ---------- */
   .feedback{
-    margin-top:16px;border:3px solid var(--line);border-radius:14px;
-    padding:14px 16px;font-weight:700;display:none;
-    animation:pop .3s ease;
+    margin-top:18px;border-radius:12px;padding:15px 17px;font-size:.96rem;
+    display:none;animation:rise .3s ease;border:1px solid transparent;
   }
   .feedback.show{display:block}
-  .feedback.good{background:#DFF5E1}
-  .feedback.soft{background:var(--blue-soft)}
-  .feedback .ftitle{font-family:'Fredoka';font-size:1.1rem;margin-bottom:3px;display:block}
+  .feedback.good{background:var(--good-bg);border-color:#CDE8D6;color:#0F5B30}
+  .feedback.soft{background:var(--soft-bg);border-color:#D6DDFB;color:#22338C}
+  .feedback .ftitle{font-weight:700;display:block;margin-bottom:3px;font-size:1rem}
 
-  /* ---------- Open / reflection ---------- */
+  /* ---------- open / reflection ---------- */
+  .reflect-note{
+    font-size:.8rem;color:var(--muted);margin-bottom:12px;font-style:italic;
+  }
   textarea{
-    width:100%;font-family:'Nunito';font-size:1rem;font-weight:600;
-    padding:13px 15px;border:3px solid var(--line);border-radius:14px;
-    background:var(--paper);min-height:96px;resize:vertical;
+    width:100%;font-family:'Inter';font-size:1rem;padding:13px 15px;
+    border:1px solid var(--hair);border-radius:12px;background:var(--paper);
+    min-height:110px;resize:vertical;line-height:1.55;
   }
-  textarea:focus{outline:none;border-color:var(--blue);background:#fff}
-  .self-check{margin-top:14px}
-  .self-check p{font-weight:800;margin-bottom:10px}
-  .checkrow{
-    display:flex;align-items:flex-start;gap:11px;
-    border:3px solid var(--line);border-radius:14px;padding:12px 14px;
-    margin-bottom:9px;cursor:pointer;background:var(--paper);font-weight:700;
-    transition:background .15s;
-  }
-  .checkrow:hover{background:#fff}
-  .checkrow.on{background:#DFF5E1;border-color:#2e8b3d}
-  .checkrow .box{
-    flex:none;width:26px;height:26px;border:3px solid var(--line);border-radius:7px;
-    background:#fff;display:grid;place-items:center;font-weight:900;color:#2e8b3d;
-  }
+  textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--soft-bg)}
 
-  /* ---------- Buttons ---------- */
+  /* ---------- buttons ---------- */
+  .actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
   .btn{
-    font-family:'Fredoka';font-weight:700;font-size:1.1rem;
-    color:#fff;background:var(--red);
-    border:3px solid var(--line);border-radius:14px;
-    padding:13px 26px;cursor:pointer;
-    box-shadow:4px 4px 0 var(--line);
-    transition:transform .1s, box-shadow .1s;
+    font-family:'Inter';font-weight:600;font-size:1rem;color:#fff;background:var(--red);
+    border:none;border-radius:11px;padding:13px 26px;cursor:pointer;
+    transition:background .15s,transform .08s;
   }
-  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--line)}
-  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
+  .btn:hover{background:var(--red-deep)}
+  .btn:active{transform:translateY(1px)}
   .btn.blue{background:var(--blue)}
-  .btn.ghost{background:#fff;color:var(--ink)}
-  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:4px 4px 0 var(--line)}
-  .actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn.blue:hover{background:var(--blue-deep)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--hair)}
+  .btn.ghost:hover{background:var(--paper);border-color:var(--muted)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
 
-  /* ---------- Result + certificate ---------- */
-  .result-emoji{font-size:3.6rem;margin-bottom:4px}
-  .score-big{font-family:'Fredoka';font-weight:700;font-size:3rem;line-height:1}
-  .score-big .slash{color:var(--grey);font-size:1.6rem}
+  /* ---------- result ---------- */
+  .result-top{text-align:center;margin-bottom:8px}
+  .result-eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .result-title{font-family:'Fraunces',serif;font-weight:600;font-size:2.1rem;line-height:1.1;margin:6px 0 4px}
+  .result-sub{color:var(--ink-soft);margin-bottom:18px}
+  .scoreline{
+    display:flex;align-items:baseline;justify-content:center;gap:8px;
+    font-family:'Fraunces',serif;margin-bottom:6px;
+  }
+  .scoreline .num{font-size:2.6rem;font-weight:600;line-height:1}
+  .scoreline .den{font-size:1.1rem;color:var(--muted)}
+  .breakdown{text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:22px}
 
-  .cert-shell{
-    background:var(--paper);
-    border:5px solid var(--line);border-radius:18px;
-    padding:30px 26px;margin-top:20px;position:relative;
-    text-align:center;overflow:hidden;
+  /* ---------- certificate ---------- */
+  .cert{
+    background:#fff;border:1px solid var(--hair);border-radius:14px;
+    padding:0;overflow:hidden;margin-top:8px;
   }
-  .cert-shell::before{
-    content:"";position:absolute;inset:9px;
-    border:2px dashed var(--red);border-radius:10px;pointer-events:none;
+  .cert-inner{padding:34px 34px 28px;position:relative}
+  .cert-bar{height:6px;width:100%;background:var(--red)}
+  .cert-bar.blue{background:var(--blue)}
+  .cert-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    margin-bottom:24px;gap:16px;
   }
-  .cert-tag{
-    font-family:'Fredoka';font-weight:700;letter-spacing:1px;
-    text-transform:uppercase;font-size:.82rem;color:var(--blue);
+  .cert-kicker{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .cert-org{font-family:'Fraunces',serif;font-weight:600;font-size:1rem;margin-top:2px}
+  .cert-medal{
+    flex:none;width:54px;height:54px;border-radius:50%;
+    border:2px solid var(--red);color:var(--red);
+    display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;
   }
-  .cert-title{font-family:'Fredoka';font-weight:700;font-size:2.3rem;line-height:1.05;margin:6px 0 4px;color:var(--red)}
-  .cert-name{font-family:'Fredoka';font-weight:700;font-size:1.9rem;margin:14px 0 2px}
-  .cert-class{font-weight:700;color:var(--grey);margin-bottom:12px}
-  .cert-line{font-weight:700;font-size:1rem;max-width:440px;margin:0 auto 10px}
-  .cert-seal{
-    width:74px;height:74px;border-radius:50%;
-    background:var(--red);color:#fff;border:3px solid var(--line);
-    display:grid;place-items:center;margin:14px auto 4px;
-    font-family:'Fredoka';font-weight:700;font-size:1.6rem;
-    transform:rotate(-8deg);
-  }
-  .cert-seal.blue{background:var(--blue)}
-  .cert-date{font-weight:700;color:var(--grey);font-size:.85rem;margin-top:8px}
+  .cert-medal.blue{border-color:var(--blue);color:var(--blue)}
+  .cert-award{font-size:.9rem;color:var(--ink-soft);margin-bottom:4px}
+  .cert-title{font-family:'Fraunces',serif;font-weight:700;font-size:2.3rem;line-height:1.05;letter-spacing:-.01em;color:var(--red);margin-bottom:18px}
+  .cert-title.blue{color:var(--blue)}
+  .cert-presented{font-size:.86rem;color:var(--muted);margin-bottom:6px}
+  .cert-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;border-bottom:1px solid var(--hair);padding-bottom:10px;margin-bottom:6px}
+  .cert-class{font-size:.92rem;color:var(--ink-soft);margin-bottom:18px}
+  .cert-body{font-size:.95rem;color:var(--ink-soft);line-height:1.6;margin-bottom:26px;max-width:52ch}
+  .cert-sigs{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+  .cert-sig{flex:1;min-width:120px;text-align:center}
+  .cert-sig .line{border-top:1px solid var(--ink);margin-bottom:6px}
+  .cert-sig .who{font-size:.78rem;color:var(--ink-soft);font-weight:500}
+  .cert-foot{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--muted);border-top:1px solid var(--hair);padding-top:14px;gap:12px}
 
-  .mini-note{font-size:.8rem;color:var(--grey);font-weight:600;margin-top:14px}
+  .mini-note{font-size:.82rem;color:var(--muted);margin-top:16px;text-align:center}
   .center{text-align:center}
 
-  @media (max-width:480px){
+  @media (max-width:520px){
+    .card{padding:28px 22px}
     .hero-title{font-size:2.1rem}
-    .q-title{font-size:1.28rem}
-    .card{padding:22px 18px}
-    .cert-title{font-size:1.9rem}
+    .q-title{font-size:1.34rem}
+    .cert-inner{padding:24px 22px}
+    .cert-title{font-size:1.8rem}
+    .cert-sigs{gap:12px}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
@@ -222,64 +239,81 @@
 <body>
 <div class="wrap">
 
-  <!-- progress -->
-  <div class="topbar" id="topbar" style="visibility:hidden">
-    <div class="progress-track"><div class="progress-fill" id="pfill"></div></div>
-    <div class="progress-label">
-      <span id="plabel">Frage 1</span>
-      <span class="hearts" id="hearts"></span>
+  <div class="topbar" id="topbar">
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="pfill"></div></div>
+      <span class="progress-count" id="pcount">1 / 12</span>
     </div>
   </div>
 
   <!-- ===== WELCOME ===== -->
   <section class="screen active" id="screen-welcome">
-    <div class="card center">
-      <div class="hero-emoji">🤝</div>
-      <div class="hero-title">Der <span class="r">Höflichkeits</span>-<span class="b">Pass</span></div>
-      <p class="lead">Zeig, was du über Respekt, faires Miteinander und gute Umgangsformen gelernt hast. Am Ende kannst du dir deine eigene Urkunde herunterladen!</p>
-      <div style="text-align:left;max-width:420px;margin:0 auto">
-        <div class="field">
-          <label for="inName">Wie heißt du?</label>
-          <input id="inName" type="text" placeholder="Dein Name" autocomplete="off" maxlength="40">
-        </div>
-        <div class="field">
-          <label for="inClass">Deine Klasse</label>
-          <input id="inClass" type="text" placeholder="z. B. 2B" autocomplete="off" maxlength="20">
-        </div>
+    <div class="card">
+      <div class="eyebrow">Soziales Lernen · Urkunde</div>
+      <h1 class="hero-title">Der Höflichkeits-<br>Pass</h1>
+      <p class="lead">Nach unserer Einheit zur Höflichkeit kannst du hier zeigen, dass du Respekt, faires Miteinander und gute Umgangsformen wirklich verstanden hast. Wer überzeugt, erhält die Urkunde <strong>Höflichkeits-Profi</strong>.</p>
+      <div class="rule"></div>
+      <div class="field">
+        <label for="inName">Dein Name</label>
+        <input id="inName" type="text" placeholder="Vor- und Nachname" autocomplete="off" maxlength="48">
       </div>
-      <div class="actions" style="justify-content:center">
-        <button class="btn" id="startBtn" disabled>Los geht's →</button>
+      <div class="field">
+        <label for="inClass">Deine Klasse</label>
+        <input id="inClass" type="text" placeholder="z. B. 2B" autocomplete="off" maxlength="20">
       </div>
-      <p class="mini-note">Dauert ungefähr 15–20 Minuten. Du brauchst kein Konto und nichts zu installieren.</p>
+      <div class="actions">
+        <button class="btn" id="startBtn" disabled>Beginnen</button>
+      </div>
+      <p class="hint">Dauer etwa 15–20 Minuten. Manche Fragen sind knifflig – lies sie in Ruhe. Für die Profi-Urkunde brauchst du mindestens 80 % der bewerteten Aufgaben.</p>
     </div>
   </section>
 
-  <!-- ===== QUIZ (filled by JS) ===== -->
+  <!-- ===== QUIZ ===== -->
   <section class="screen" id="screen-quiz">
     <div class="card" id="quizCard"></div>
   </section>
 
   <!-- ===== RESULT ===== -->
   <section class="screen" id="screen-result">
-    <div class="card center">
-      <div class="result-emoji" id="resEmoji">🎉</div>
-      <h2 class="display" id="resHeadline" style="font-size:2rem"></h2>
-      <p style="font-weight:700;color:var(--grey);margin:4px 0 14px" id="resSub"></p>
-      <div class="score-big"><span id="resScore">0</span><span class="slash"> / <span id="resMax">0</span> Punkten</span></div>
+    <div class="card">
+      <div class="result-top">
+        <div class="result-eyebrow" id="resEyebrow">Ergebnis</div>
+        <h2 class="result-title" id="resTitle"></h2>
+        <p class="result-sub" id="resSub"></p>
+        <div class="scoreline"><span class="num" id="resScore">0</span><span class="den">von <span id="resMax">0</span> Punkten</span></div>
+        <div class="breakdown" id="resBreak"></div>
+      </div>
 
-      <div class="cert-shell" id="certificate">
-        <div class="cert-tag">Urkunde &nbsp;•&nbsp; Soziales Lernen</div>
-        <div class="cert-title" id="certTitle">Höflichkeits-Profi</div>
-        <div class="cert-line">Diese Urkunde bestätigt, dass</div>
-        <div class="cert-name" id="certName">—</div>
-        <div class="cert-class" id="certClass"></div>
-        <div class="cert-line" id="certBody"></div>
-        <div class="cert-seal" id="certSeal">★</div>
-        <div class="cert-date" id="certDate"></div>
+      <div class="cert" id="certificate">
+        <div class="cert-bar" id="certBar"></div>
+        <div class="cert-inner">
+          <div class="cert-head">
+            <div>
+              <div class="cert-kicker">Urkunde</div>
+              <div class="cert-org">Soziales Lernen</div>
+            </div>
+            <div class="cert-medal" id="certMedal">✓</div>
+          </div>
+          <div class="cert-award">verliehen als</div>
+          <div class="cert-title" id="certTitle">Höflichkeits-Profi</div>
+          <div class="cert-presented">Diese Urkunde bestätigt, dass</div>
+          <div class="cert-name" id="certName">—</div>
+          <div class="cert-class" id="certClass"></div>
+          <div class="cert-body" id="certBody"></div>
+          <div class="cert-sigs">
+            <div class="cert-sig"><div class="line"></div><div class="who">Frau Reiter</div></div>
+            <div class="cert-sig"><div class="line"></div><div class="who">Herr Weixelbaumer</div></div>
+            <div class="cert-sig"><div class="line"></div><div class="who">Herr Eßbichl</div></div>
+          </div>
+          <div class="cert-foot">
+            <span id="certDate"></span>
+            <span id="certScore"></span>
+          </div>
+        </div>
       </div>
 
       <div class="actions" style="justify-content:center">
-        <button class="btn" id="downloadBtn">⬇ Urkunde herunterladen</button>
+        <button class="btn" id="downloadBtn">Urkunde herunterladen</button>
         <button class="btn ghost" id="retryBtn">Nochmal versuchen</button>
       </div>
       <p class="mini-note" id="retryNote"></p>
@@ -288,183 +322,193 @@
 
 </div>
 
-<!-- html2canvas for certificate download -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 (function(){
   "use strict";
 
-  // ---------------- DATA ----------------
-  // type: 'mc' multiple choice | 'case' fallbeispiel mc | 'open' free text | 'check' self-check list
+  /* ============================================================
+     AUFGABEN
+     scored:true  -> zählt für die Urkunde (richtig/falsch bewertbar)
+     scored:false -> reine Reflexion, kein Punkt
+     Typen: 'single' (eine beste Antwort) | 'multi' (mehrere richtig)
+            | 'open' (freitext, unbewertet)
+  ============================================================ */
   const QUESTIONS = [
     {
-      type:'mc', topic:'Verhaltensregeln',
-      q:'Warum gibt es überhaupt Verhaltensregeln?',
-      sub:'Wähle die beste Antwort.',
+      type:'single', scored:true, topic:'Verhaltensregeln',
+      q:'Verschiedene Situationen, verschiedene Regeln',
+      scenario:'In der Bibliothek flüstert man, in der Turnhalle darf man laut sein, beim Mittagessen gelten wieder andere Regeln.',
+      sub:'Was ist der beste Grund dafür, dass nicht überall dieselben Regeln gelten?',
       options:[
-        'Damit Erwachsene Kinder ärgern können.',
-        'Damit das Zusammenleben leichter wird und weniger Streit entsteht.',
-        'Damit alle in jeder Situation genau gleich sein müssen.',
-        'Regeln haben eigentlich gar keinen Sinn.'
+        'Weil sich die Lehrer*innen nicht einig sind.',
+        'Weil Regeln zu dem passen, was an einem Ort gerade gebraucht wird.',
+        'Weil strenge Orte wichtiger sind als lockere.',
+        'Weil man Regeln sowieso nicht überall durchsetzen kann.'
       ],
       correct:1,
-      fbGood:'Genau! Regeln helfen uns, Missverständnisse zu vermeiden und gut zusammenzuarbeiten.',
-      fbBad:'Fast! Regeln sollen niemanden ärgern – sie machen das Miteinander leichter und verhindern Streit.'
+      fbGood:'Genau. Regeln sind kein Selbstzweck – sie passen sich der Situation an, damit das Miteinander an jedem Ort funktioniert.',
+      fbBad:'Die beste Antwort ist B: Regeln richten sich danach, was eine Situation braucht. Flüstern schützt in der Bibliothek die anderen – in der Turnhalle wäre es unnötig.'
     },
     {
-      type:'mc', topic:'Respekt',
-      q:'Was bedeutet „Respekt ist keine Einbahnstraße“?',
-      sub:'Wähle die beste Antwort.',
+      type:'single', scored:true, topic:'Respekt',
+      q:'Respekt ist keine Einbahnstraße',
+      scenario:'Ein neuer Mitschüler verhält sich dir gegenüber unfreundlich. Du hast ihm nichts getan.',
+      sub:'Was passt am besten zum Gedanken „Respekt ist keine Einbahnstraße“?',
       options:[
-        'Nur Lehrer*innen verdienen Respekt.',
-        'Respekt bekommt nur, wer älter ist.',
-        'Respekt geht in beide Richtungen – ich gebe ihn und bekomme ihn.',
-        'Respekt muss man mit Geld bezahlen.'
+        'Ich bin auch unfreundlich – wie er zu mir, so ich zu ihm.',
+        'Ich ignoriere ihn für immer.',
+        'Ich bleibe selbst respektvoll und gebe der Beziehung eine faire Chance.',
+        'Respekt verdient nur, wer zuerst nett ist.'
       ],
       correct:2,
-      fbGood:'Richtig! Jeder Mensch verdient Respekt – und Respekt gibt man genauso, wie man ihn bekommt.',
-      fbBad:'Nicht ganz. Eine Einbahnstraße geht nur in eine Richtung – Respekt aber in beide: geben UND bekommen.'
+      fbGood:'Richtig. Respekt geht in beide Richtungen – aber das heißt nicht „Auge um Auge“. Ich kann den ersten respektvollen Schritt machen.',
+      fbBad:'B und D drehen die Spirale nach unten. „Keine Einbahnstraße“ heißt: Respekt fließt in beide Richtungen – ich kann ihn vorleben, statt Unfreundlichkeit zu spiegeln.'
     },
     {
-      type:'case', topic:'Pünktlichkeit',
-      q:'Du verschläfst und kommst 10 Minuten zu spät. Die Stunde läuft schon.',
-      sub:'Was ist die höflichste Reaktion?',
+      type:'multi', scored:true, topic:'Höflichkeit beim Lernen',
+      q:'Warum hilft Höflichkeit beim Lernen?',
+      sub:'Mehrere Antworten sind richtig. Wähle alle aus, die wirklich stimmen.',
       options:[
-        'Laut reinpoltern und erzählen, warum du zu spät bist.',
-        'Leise reinkommen, dich kurz entschuldigen und schnell mitmachen.',
-        'Gar nicht erst reingehen.',
-        'So tun, als wärst du schon die ganze Zeit da gewesen.'
+        'Sie schafft einen sicheren Ort, an dem sich alle wohlfühlen.',
+        'Sie sorgt dafür, dass nur die Besten mitreden dürfen.',
+        'Sie verhindert Ablenkungen, so bleibt mehr Zeit zum Lernen.',
+        'Sie hilft, klar und ohne Streit zu kommunizieren.'
+      ],
+      correctSet:[0,2,3],
+      fbGood:'Sehr gut abgewogen. Höflichkeit schafft Sicherheit, spart Zeit und macht das Kommunizieren leichter – sie schließt aber niemanden aus.',
+      fbBad:'Richtig sind A, C und D. B passt nicht: Höflichkeit soll niemanden ausschließen, sondern allen einen sicheren Platz geben.'
+    },
+    {
+      type:'single', scored:true, topic:'Pünktlichkeit',
+      q:'Zu spät – aber wie?',
+      scenario:'Du kommst 10 Minuten zu spät, die Stunde läuft schon. Vier Reaktionen wären denkbar.',
+      sub:'Welche zeigt den meisten Respekt gegenüber der Klasse?',
+      options:[
+        'Laut hereinkommen und gleich erklären, warum du zu spät bist.',
+        'Leise hereinkommen, dich kurz und still entschuldigen, rasch einsteigen.',
+        'Vor der Tür warten, bis die Stunde vorbei ist.',
+        'Hereinkommen und die Sitznachbarin fragen, was du verpasst hast.'
       ],
       correct:1,
-      fbGood:'Perfekt! Leise und mit einer kurzen Entschuldigung störst du den Lernfluss am wenigsten.',
-      fbBad:'Denk an die anderen: Wer leise reinkommt und sich kurz entschuldigt, stört den Unterricht am wenigsten.'
+      fbGood:'Genau. Leise und kurz – so störst du den Lernfluss der anderen am wenigsten. Nachfragen kannst du später.',
+      fbBad:'B ist am rücksichtsvollsten. A und D unterbrechen den Unterricht, C lässt dich noch mehr verpassen. Die Erklärung kann warten.'
     },
     {
-      type:'mc', topic:'Wortwahl',
-      q:'Ihr seid unterschiedlicher Meinung. Welcher Satz ist fair?',
-      sub:'Wähle die beste Antwort.',
+      type:'single', scored:true, topic:'Wortwahl',
+      q:'Sachlich bleiben im Streit',
+      scenario:'In einer Diskussion sagt jemand etwas, das du für falsch hältst.',
+      sub:'Welche Antwort bleibt sachlich, ohne persönlich zu werden?',
       options:[
-        '„Du hast doch keine Ahnung!“',
-        '„Das ist voll dumm.“',
-        '„Ich sehe das anders, weil …“',
-        '„Mir egal, was du denkst.“'
+        '„Das ist doch Quatsch, das weiß jeder.“',
+        '„Ich sehe das anders, weil ich dazu Folgendes gelesen habe …“',
+        '„Typisch, dass gerade du das sagst.“',
+        '„Du verstehst das einfach nicht.“'
       ],
-      correct:2,
-      fbGood:'Stark! Eine Ich-Botschaft bleibt sachlich und wird nicht persönlich.',
-      fbBad:'Achtung: Die anderen Sätze greifen die Person an. Fair ist „Ich sehe das anders, weil …“.'
+      correct:1,
+      fbGood:'Richtig. Eine Ich-Botschaft mit Begründung greift die Sache an, nicht die Person.',
+      fbBad:'Nur B bleibt bei der Sache. A, C und D zielen auf die Person – das eskaliert den Streit, statt ihn zu klären.'
     },
     {
-      type:'case', topic:'Eigentum',
-      q:'Du nimmst dir den Klebestift deiner Sitznachbarin, ohne zu fragen. Er fällt runter und bricht.',
-      sub:'Was machst du jetzt?',
-      options:[
-        'Schnell zurücklegen und nichts sagen.',
-        'Sagen, jemand anderer war es.',
-        'Bescheid sagen, dich entschuldigen und überlegen, wie du es wiedergutmachst.',
-        'Behaupten, er war schon kaputt.'
-      ],
-      correct:2,
-      fbGood:'Genau das ist Verantwortung übernehmen – ehrlich sein und es wiedergutmachen.',
-      fbBad:'Eine Lüge macht das Problem größer. Ehrlich Bescheid sagen und es wiedergutmachen ist der faire Weg.'
-    },
-    {
-      type:'mc', topic:'Private Gegenstände',
-      q:'Wohin gehört dein Handy während des Unterrichts?',
-      sub:'Wähle die beste Antwort.',
+      type:'single', scored:true, topic:'Private Gegenstände',
+      q:'Wohin mit dem Handy?',
+      scenario:'Der Unterricht beginnt. Dein Handy ist in deiner Hosentasche.',
+      sub:'Wo gehört es während des Unterrichts hin?',
       options:[
         'Offen auf den Tisch, falls eine Nachricht kommt.',
-        'In die Hand, aber unter den Tisch.',
-        'In die Schultasche oder den Spind.',
-        'In die Hosentasche, mit Ton an.'
-      ],
-      correct:2,
-      fbGood:'Richtig! In der Tasche oder im Spind lenkt es weder dich noch andere ab.',
-      fbBad:'Private Sachen lenken ab – am besten liegen sie in der Schultasche oder im Spind.'
-    },
-    {
-      type:'case', topic:'Petzen oder Hilfe holen',
-      q:'Zwei Mitschüler ärgern in der Pause einen anderen immer wieder und nehmen ihm die Mütze weg. Er ist den Tränen nahe.',
-      sub:'Petzen oder Hilfe holen? Was tust du?',
-      options:[
-        'Wegschauen – geht mich nichts an.',
-        'Mitlachen, damit ich nicht selbst dran komme.',
-        'Einer erwachsenen Person Bescheid sagen, damit dem Jungen geholfen wird.',
-        'Es allen weitererzählen, damit die zwei blöd dastehen.'
-      ],
-      correct:2,
-      fbGood:'Genau! Hier wird jemand verletzt – das ist „Hilfe holen“, nicht petzen. Du schützt ihn.',
-      fbBad:'Hier wird jemand verletzt und unfair behandelt. Hilfe holen ist richtig – das ist kein Petzen, du schützt ihn.'
-    },
-    {
-      type:'check', topic:'Petzen oder Hilfe holen',
-      q:'Bevor du etwas erzählst – woran erkennst du, dass es „Hilfe holen“ ist?',
-      sub:'Tippe alle Punkte an, die wirklich für Hilfe-Holen sprechen.',
-      items:[
-        {t:'Jemand ist in Gefahr oder wird unfair behandelt.', good:true},
-        {t:'Ich habe es selbst gesehen oder gehört.', good:true},
-        {t:'Ich will, dass die andere Person blöd dasteht.', good:false},
-        {t:'Ich will wirklich helfen.', good:true},
-        {t:'Es ist nur ein Gerücht, das jemand erzählt hat.', good:false}
-      ],
-      fbGood:'Super abgewogen! Hilfe holen will schützen – Petzen will schaden.',
-      fbBad:'Schau nochmal: Beim Hilfe-Holen geht es ums Schützen, nicht darum, dass jemand schlecht dasteht oder um Gerüchte.'
-    },
-    {
-      type:'mc', topic:'Weitererzählen',
-      q:'Eine Freundin erzählt dir etwas im Vertrauen. Wann darfst du es weitererzählen?',
-      sub:'Wähle die beste Antwort.',
-      options:[
-        'Immer, Hauptsache es ist spannend.',
-        'Nur wenn es notwendig, wahr und fair ist.',
-        'Nur an meine beste Freundin.',
-        'Wenn ich mich sonst langweile.'
+        'In die Handylade oder in den Spind.',
+        'In die Hosentasche, das reicht.',
+        'In die Hand, aber unter den Tisch.'
       ],
       correct:1,
-      fbGood:'Richtig! Über andere spricht man nur, wenn es notwendig, wahr und fair ist.',
-      fbBad:'Merksatz aus dem Unterricht: Weitererzählen nur, wenn es notwendig, wahr und fair ist.'
+      fbGood:'Richtig. In der Handylade oder im Spind kann es weder dich noch andere ablenken.',
+      fbBad:'Die richtige Antwort ist B: Handylade oder Spind. In Tasche oder Hand bleibt die Ablenkung immer in Reichweite.'
     },
     {
-      type:'open', topic:'Faire Sätze',
-      q:'Schreib einen fairen Satz!',
-      sub:'Stell dir vor, du machst dir Sorgen um eine*n Mitschüler*in. Schreib einen Satz, der mit „Ich mache mir Sorgen, weil …“ beginnt.',
-      placeholder:'Ich mache mir Sorgen, weil …',
-      minLen:15,
-      fbGood:'Klasse! So eine Ich-Botschaft ist fair und hilft, ohne jemanden bloßzustellen.'
+      type:'single', scored:true, topic:'Eigentum & Ehrlichkeit',
+      q:'Das kaputte Lineal',
+      scenario:'Du hast dir ohne Fragen das Lineal deiner Sitznachbarin geliehen. Es bricht. Niemand hat es gesehen.',
+      sub:'Was ist die ehrlichste und fairste Reaktion?',
+      options:[
+        'Das Lineal zurücklegen und hoffen, dass sie es nicht merkt.',
+        'Sagen, es sei schon vorher kaputt gewesen.',
+        'Es ihr sagen, dich entschuldigen und anbieten, Ersatz zu besorgen.',
+        'Behaupten, jemand anderer hätte es benutzt.'
+      ],
+      correct:2,
+      fbGood:'Genau. Verantwortung übernehmen heißt: ehrlich sein und überlegen, wie man es wiedergutmacht. Eine Lüge würde das Problem nur größer machen.',
+      fbBad:'C ist richtig. A, B und D sind Lügen – und eine Lüge macht Probleme meistens größer. Ehrlichkeit heißt, Verantwortung zu übernehmen.'
     },
     {
-      type:'open', topic:'Höfliche Geste',
-      q:'Deine höfliche Geste',
-      sub:'Nenne eine kleine höfliche Geste, die du diese Woche in der Schule machen kannst. (z. B. Tür aufhalten, helfen, jemanden vorlassen)',
-      placeholder:'Diese Woche werde ich …',
-      minLen:10,
-      fbGood:'Toll! Kleine Gesten bewirken oft Großes.'
+      type:'multi', scored:true, topic:'Petzen oder Hilfe holen',
+      q:'Hilfe holen – woran erkennst du das?',
+      scenario:'Du überlegst, ob du einer erwachsenen Person etwas erzählen sollst.',
+      sub:'Welche Punkte sprechen wirklich für „Hilfe holen“ (nicht für Petzen)? Wähle alle richtigen aus.',
+      options:[
+        'Jemand ist in Gefahr oder wird unfair behandelt.',
+        'Ich will, dass die andere Person Ärger bekommt.',
+        'Ich habe es selbst gesehen oder gehört.',
+        'Es ist nur ein Gerücht, das herumgeht.'
+      ],
+      correctSet:[0,2],
+      fbGood:'Sehr gut. Hilfe holen will jemanden schützen und beruht auf dem, was du selbst weißt – nicht auf Gerüchten oder dem Wunsch zu schaden.',
+      fbBad:'Richtig sind A und C. B will schaden (= petzen), und D beruht auf einem Gerücht. Hilfe holen schützt jemanden und stützt sich auf das, was du selbst weißt.'
     },
     {
-      type:'open', topic:'Verantwortung',
-      q:'Was bedeutet dieser Satz für dich?',
-      sub:'„Ich bin für mein Verhalten verantwortlich – nicht für das Verhalten aller anderen.“ Schreib in 1–2 Sätzen, was das für dich heißt.',
-      placeholder:'Für mich bedeutet das …',
-      minLen:20,
-      fbGood:'Sehr reif gedacht! Du kümmerst dich um dein eigenes faires Verhalten – das ist das Wichtigste.'
+      type:'single', scored:true, topic:'Weitererzählen',
+      q:'Drei Fragen vor dem Weitererzählen',
+      scenario:'Eine Freundin hat dir etwas anvertraut. In der Pause fragt jemand neugierig nach.',
+      sub:'Nach welchem Maßstab entscheidest du, ob du etwas über andere weitererzählst?',
+      options:[
+        'Nur wenn es spannend genug ist.',
+        'Nur wenn es notwendig, wahr und fair ist.',
+        'Immer, wenn jemand direkt fragt.',
+        'Nur wenn meine beste Freundin es auch erfährt.'
+      ],
+      correct:1,
+      fbGood:'Richtig. Notwendig, wahr und fair – diese drei Fragen schützen andere und dich selbst. Weitererzähltes kann man nicht zurückholen.',
+      fbBad:'Die richtige Antwort ist B. Nur wenn etwas notwendig, wahr und fair ist, erzählt man es weiter – Neugier oder eine direkte Frage allein reichen nicht.'
+    },
+    {
+      type:'single', scored:true, topic:'Eigene Verantwortung',
+      q:'Muss ich mich um alles kümmern?',
+      scenario:'Du siehst, dass ein Mitschüler heimlich abschreibt. Du selbst arbeitest gerade konzentriert an deiner Aufgabe.',
+      sub:'Was passt am besten zu „Ich bin für mein Verhalten verantwortlich – nicht für das aller anderen“?',
+      options:[
+        'Ich rufe laut durch die Klasse, dass er abschreibt.',
+        'Ich konzentriere mich auf meine Arbeit; das Beobachten von Regeln ist Aufgabe der Lehrkraft.',
+        'Ich schreibe auch ab, dann ist es gerecht.',
+        'Ich beobachte ihn die ganze Stunde, um es danach zu melden.'
+      ],
+      correct:1,
+      fbGood:'Genau. Du steuerst dein eigenes faires Verhalten. Lehrkräfte behalten die Regeln im Blick – ständiges Vergleichen hilft niemandem.',
+      fbBad:'B passt am besten. A stört die Klasse, C ist selbst unfair, D hält dich von deiner Arbeit ab. Wichtiger ist: Verhalte ich mich selbst fair?'
+    },
+    {
+      type:'open', scored:false, topic:'Reflexion',
+      q:'Deine faire Ich-Botschaft',
+      sub:'Stell dir vor, du machst dir Sorgen um eine*n Mitschüler*in und möchtest Hilfe holen, ohne ihn bloßzustellen. Formuliere einen fairen Satz, mit dem du dich an eine erwachsene Person wenden würdest.',
+      placeholder:'Zum Beispiel: „Ich mache mir Sorgen, weil …“',
+      reflectNote:'Diese Aufgabe ist zum Nachdenken – sie wird nicht benotet und zählt nicht für die Urkunde.'
+    },
+    {
+      type:'open', scored:false, topic:'Reflexion',
+      q:'Dein Vorsatz für diese Woche',
+      sub:'Welche eine höfliche Geste nimmst du dir für diese Woche konkret vor? Beschreibe sie kurz und überlege, wem sie hilft.',
+      placeholder:'Diese Woche werde ich …, weil …',
+      reflectNote:'Diese Aufgabe ist zum Nachdenken – sie wird nicht benotet und zählt nicht für die Urkunde.'
     }
   ];
 
   const PASS_PERCENT = 80;
+  const scoredCount = QUESTIONS.filter(q=>q.scored).length;
 
-  // ---------------- STATE ----------------
-  let idx = 0;
-  let score = 0;
-  let maxScore = QUESTIONS.length; // 1 point each
-  let answered = false;
-  let student = {name:'', klass:''};
+  // ---- state ----
+  let idx=0, score=0, answered=false;
+  let student={name:'',klass:''};
 
-  // ---------------- ELEMENTS ----------------
   const $ = id => document.getElementById(id);
-  const screens = {
-    welcome:$('screen-welcome'),
-    quiz:$('screen-quiz'),
-    result:$('screen-result')
-  };
+  const screens = {welcome:$('screen-welcome'),quiz:$('screen-quiz'),result:$('screen-result')};
   const quizCard = $('quizCard');
 
   function show(name){
@@ -473,242 +517,196 @@
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  // ---------------- WELCOME ----------------
-  const inName = $('inName'), inClass = $('inClass'), startBtn = $('startBtn');
-  function checkStart(){
-    startBtn.disabled = inName.value.trim().length < 1;
-  }
-  inName.addEventListener('input', checkStart);
-  inClass.addEventListener('input', checkStart);
-  inName.addEventListener('keydown', e=>{ if(e.key==='Enter') inClass.focus(); });
-  inClass.addEventListener('keydown', e=>{ if(e.key==='Enter' && !startBtn.disabled) startBtn.click(); });
-
-  startBtn.addEventListener('click', ()=>{
-    student.name = inName.value.trim();
-    student.klass = inClass.value.trim();
-    idx = 0; score = 0; answered = false;
-    $('topbar').style.visibility = 'visible';
-    show('quiz');
-    render();
-  });
-
-  // ---------------- PROGRESS ----------------
-  function updateProgress(){
-    const pct = (idx/QUESTIONS.length)*100;
-    $('pfill').style.width = pct + '%';
-    $('plabel').textContent = 'Frage ' + (idx+1) + ' von ' + QUESTIONS.length;
-    // hearts show running score as filled/empty out of total so far
-    let h = '';
-    for(let i=0;i<QUESTIONS.length;i++){
-      h += (i<idx ? (resultMarks[i] ? '💛' : '🤍') : '·');
-    }
-    $('hearts').textContent = h;
-  }
-  const resultMarks = []; // true if point earned
-
-  // ---------------- RENDER QUESTION ----------------
-  function render(){
-    answered = false;
-    updateProgress();
-    const item = QUESTIONS[idx];
-    const isBlue = idx % 2 === 1;
-    const badgeClass = isBlue ? 'badge blue' : 'badge';
-
-    let html = `<span class="${badgeClass}">${item.topic}</span>`;
-    html += `<div class="q-title">${item.q}</div>`;
-    if(item.sub) html += `<div class="q-sub">${item.sub}</div>`;
-
-    if(item.type==='mc' || item.type==='case'){
-      html += `<div class="options" id="opts">`;
-      const keys = ['A','B','C','D','E'];
-      item.options.forEach((o,i)=>{
-        html += `<button class="opt" data-i="${i}"><span class="key">${keys[i]}</span><span>${o}</span></button>`;
-      });
-      html += `</div>`;
-    } else if(item.type==='check'){
-      html += `<div class="self-check" id="checks">`;
-      item.items.forEach((it,i)=>{
-        html += `<div class="checkrow" data-i="${i}"><span class="box" data-box="${i}"></span><span>${it.t}</span></div>`;
-      });
-      html += `</div>`;
-    } else if(item.type==='open'){
-      html += `<textarea id="openText" placeholder="${item.placeholder||''}"></textarea>`;
-    }
-
-    html += `<div class="feedback" id="fb"></div>`;
-    html += `<div class="actions">
-      <button class="btn ${isBlue?'blue':''}" id="actBtn">${item.type==='open'?'Antwort abschicken':'Bestätigen'}</button>
-    </div>`;
-
-    quizCard.innerHTML = html;
-    quizCard.style.animation = 'none';
-    void quizCard.offsetWidth;
-    quizCard.style.animation = '';
-
-    wireQuestion(item, isBlue);
-  }
-
-  function wireQuestion(item, isBlue){
-    const actBtn = $('actBtn');
-
-    if(item.type==='mc' || item.type==='case'){
-      let chosen = null;
-      const opts = [...document.querySelectorAll('.opt')];
-      opts.forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          if(answered) return;
-          chosen = +btn.dataset.i;
-          opts.forEach(o=>o.style.outline='');
-          btn.style.outline = '3px solid '+(isBlue?'#2F55F5':'#E63B3B');
-          btn.style.outlineOffset = '2px';
-        });
-      });
-      actBtn.addEventListener('click', ()=>{
-        if(answered){ next(); return; }
-        if(chosen===null){ shake(actBtn); return; }
-        answered = true;
-        const ok = chosen===item.correct;
-        opts.forEach((o,i)=>{
-          o.disabled = true; o.style.outline='';
-          if(i===item.correct) o.classList.add('correct');
-          else if(i===chosen) o.classList.add('wrong');
-          else o.classList.add('dim');
-        });
-        award(ok, item);
-        actBtn.textContent = 'Weiter →';
-      });
-
-    } else if(item.type==='check'){
-      const rows = [...document.querySelectorAll('.checkrow')];
-      const sel = new Set();
-      rows.forEach(r=>{
-        r.addEventListener('click', ()=>{
-          if(answered) return;
-          const i = +r.dataset.i;
-          if(sel.has(i)){ sel.delete(i); r.classList.remove('on'); r.querySelector('.box').textContent=''; }
-          else { sel.add(i); r.classList.add('on'); r.querySelector('.box').textContent='✓'; }
-        });
-      });
-      actBtn.addEventListener('click', ()=>{
-        if(answered){ next(); return; }
-        if(sel.size===0){ shake(actBtn); return; }
-        answered = true;
-        // correct = exactly all good ones selected, no bad ones
-        let ok = true;
-        item.items.forEach((it,i)=>{
-          if(it.good && !sel.has(i)) ok=false;
-          if(!it.good && sel.has(i)) ok=false;
-        });
-        rows.forEach((r,i)=>{
-          r.style.pointerEvents='none';
-          const box = r.querySelector('.box');
-          if(item.items[i].good){ r.classList.add('on'); box.textContent='✓'; r.style.borderColor='#2e8b3d'; r.style.background='#DFF5E1'; }
-          else if(sel.has(i)){ r.classList.remove('on'); box.textContent='✗'; box.style.color='#E63B3B'; r.style.borderColor='#E63B3B'; r.style.background='#FBE0DE'; }
-        });
-        award(ok, item);
-        actBtn.textContent = 'Weiter →';
-      });
-
-    } else if(item.type==='open'){
-      const ta = $('openText');
-      actBtn.addEventListener('click', ()=>{
-        if(answered){ next(); return; }
-        const val = ta.value.trim();
-        if(val.length < (item.minLen||10)){ shake(actBtn); ta.style.borderColor='#E63B3B'; return; }
-        answered = true;
-        ta.disabled = true;
-        award(true, item); // open answers always earn the point if they wrote enough
-        actBtn.textContent = 'Weiter →';
-      });
-    }
-  }
-
-  function award(ok, item){
-    resultMarks[idx] = ok;
-    if(ok) score++;
-    const fb = $('fb');
-    fb.classList.add('show', ok?'good':'soft');
-    const title = ok ? '✅ Richtig!' : '💡 Gut nachgedacht';
-    const txt = ok ? (item.fbGood||'') : (item.fbBad||item.fbGood||'');
-    fb.innerHTML = `<span class="ftitle">${title}</span>${txt}`;
-    fb.scrollIntoView({behavior:'smooth', block:'nearest'});
-  }
-
-  function shake(el){
-    el.animate([
-      {transform:'translateX(0)'},{transform:'translateX(-6px)'},
-      {transform:'translateX(6px)'},{transform:'translateX(0)'}
-    ],{duration:260});
-  }
-
-  function next(){
-    idx++;
-    if(idx>=QUESTIONS.length){ finish(); }
-    else render();
-  }
-
-  // ---------------- RESULT ----------------
-  function finish(){
-    $('pfill').style.width = '100%';
-    const pct = Math.round((score/maxScore)*100);
-    const passed = pct >= PASS_PERCENT;
-
-    $('resScore').textContent = score;
-    $('resMax').textContent = maxScore;
-
-    if(passed){
-      $('resEmoji').textContent = '🏆';
-      $('resHeadline').textContent = 'Geschafft!';
-      $('resSub').textContent = `Du hast ${pct}% richtig – das ist Profi-Niveau!`;
-      $('certTitle').textContent = 'Höflichkeits-Profi';
-      $('certTitle').style.color = 'var(--red)';
-      $('certSeal').textContent = '★';
-      $('certSeal').classList.remove('blue');
-      $('certBody').textContent = 'sich als echte*r Höflichkeits-Profi erwiesen hat: respektvoll, fair und rücksichtsvoll im Umgang mit anderen.';
-      $('retryNote').textContent = 'Du kannst es auch nochmal versuchen, wenn du magst.';
-    } else {
-      $('resEmoji').textContent = '🌱';
-      $('resHeadline').textContent = 'Schon richtig gut!';
-      $('resSub').textContent = `Du hast ${pct}% geschafft. Mit einem zweiten Versuch wirst du zum Profi!`;
-      $('certTitle').textContent = 'Höflichkeits-Talent';
-      $('certTitle').style.color = 'var(--blue)';
-      $('certSeal').textContent = '↑';
-      $('certSeal').classList.add('blue');
-      $('certBody').textContent = 'auf dem besten Weg ist, ein*e Höflichkeits-Profi zu werden – mit viel Respekt und Rücksicht für andere.';
-      $('retryNote').textContent = 'Tipp: Ab 80% gibt es die Profi-Urkunde. Probier es ruhig nochmal!';
-    }
-
-    $('certName').textContent = student.name || '—';
-    $('certClass').textContent = student.klass ? ('Klasse ' + student.klass) : '';
-    const d = new Date();
-    $('certDate').textContent = 'Ausgestellt am ' + d.toLocaleDateString('de-AT',{day:'numeric',month:'long',year:'numeric'});
-
-    show('result');
-  }
-
-  $('retryBtn').addEventListener('click', ()=>{
-    idx=0; score=0; answered=false; resultMarks.length=0;
+  // ---- welcome ----
+  const inName=$('inName'), inClass=$('inClass'), startBtn=$('startBtn');
+  const checkStart=()=>{ startBtn.disabled = inName.value.trim().length<1; };
+  inName.addEventListener('input',checkStart);
+  inClass.addEventListener('input',checkStart);
+  inName.addEventListener('keydown',e=>{ if(e.key==='Enter') inClass.focus(); });
+  inClass.addEventListener('keydown',e=>{ if(e.key==='Enter' && !startBtn.disabled) startBtn.click(); });
+  startBtn.addEventListener('click',()=>{
+    student.name=inName.value.trim(); student.klass=inClass.value.trim();
+    idx=0; score=0; answered=false;
+    $('topbar').style.visibility='visible';
     show('quiz'); render();
   });
 
-  // ---------------- DOWNLOAD CERTIFICATE ----------------
-  $('downloadBtn').addEventListener('click', ()=>{
-    const cert = $('certificate');
-    const btn = $('downloadBtn');
-    btn.textContent = 'Wird erstellt …';
-    btn.disabled = true;
-    html2canvas(cert, {scale:2, backgroundColor:'#FBF7F4', useCORS:true}).then(canvas=>{
-      const link = document.createElement('a');
-      const safe = (student.name||'Hoeflichkeit').replace(/[^a-zA-Z0-9äöüÄÖÜ]/g,'_');
-      link.download = 'Hoeflichkeits-Urkunde_'+safe+'.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      btn.textContent = '⬇ Urkunde herunterladen';
-      btn.disabled = false;
-    }).catch(()=>{
-      btn.textContent = 'Nochmal versuchen ⬇';
-      btn.disabled = false;
-    });
+  // ---- progress ----
+  function updateProgress(){
+    const pct=(idx/QUESTIONS.length)*100;
+    $('pfill').style.width=pct+'%';
+    $('pcount').textContent=(idx+1)+' / '+QUESTIONS.length;
+  }
+
+  // ---- render ----
+  function render(){
+    answered=false; updateProgress();
+    const item=QUESTIONS[idx];
+    const isBlue=idx%2===1;
+    let html='';
+    html+=`<div class="q-topic ${isBlue?'blue':''}"><span class="dot"></span>${item.topic}</div>`;
+    html+=`<div class="q-title">${item.q}</div>`;
+    if(item.scenario) html+=`<div class="scenario">${item.scenario}</div>`;
+    if(item.sub) html+=`<div class="q-sub">${item.sub}</div>`;
+
+    if(item.type==='single'||item.type==='multi'){
+      if(item.type==='multi') html+=`<div class="q-instruction">Mehrfachauswahl möglich</div>`;
+      html+=`<div class="options" id="opts">`;
+      const keys=['A','B','C','D','E'];
+      item.options.forEach((o,i)=>{
+        html+=`<button class="opt ${item.type==='multi'?'multi':''}" data-i="${i}"><span class="key">${item.type==='multi'?'':keys[i]}</span><span>${o}</span></button>`;
+      });
+      html+=`</div>`;
+    } else if(item.type==='open'){
+      if(item.reflectNote) html+=`<div class="reflect-note">${item.reflectNote}</div>`;
+      html+=`<textarea id="openText" placeholder="${item.placeholder||''}"></textarea>`;
+    }
+
+    html+=`<div class="feedback" id="fb"></div>`;
+    html+=`<div class="actions"><button class="btn ${isBlue?'blue':''}" id="actBtn">${item.type==='open'?'Weiter':'Antwort prüfen'}</button></div>`;
+    quizCard.innerHTML=html;
+    quizCard.style.animation='none'; void quizCard.offsetWidth; quizCard.style.animation='';
+    wire(item,isBlue,idx===QUESTIONS.length-1);
+  }
+
+  function wire(item,isBlue,last){
+    const actBtn=$('actBtn');
+    const advanceLabel = last ? 'Zum Ergebnis' : 'Weiter';
+
+    if(item.type==='single'){
+      let chosen=null;
+      const opts=[...document.querySelectorAll('.opt')];
+      opts.forEach(b=>b.addEventListener('click',()=>{
+        if(answered) return;
+        chosen=+b.dataset.i;
+        opts.forEach(o=>o.classList.remove('sel')); b.classList.add('sel');
+      }));
+      actBtn.addEventListener('click',()=>{
+        if(answered){ next(); return; }
+        if(chosen===null){ shake(actBtn); return; }
+        answered=true;
+        const ok=chosen===item.correct;
+        opts.forEach((o,i)=>{
+          o.disabled=true; o.classList.remove('sel');
+          if(i===item.correct){ o.classList.add('correct'); o.innerHTML+='<span class="tag">richtig</span>'; }
+          else if(i===chosen){ o.classList.add('wrong'); o.innerHTML+='<span class="tag">deine Wahl</span>'; }
+          else o.classList.add('dim');
+        });
+        award(ok,item); actBtn.textContent=advanceLabel;
+      });
+
+    } else if(item.type==='multi'){
+      const sel=new Set();
+      const opts=[...document.querySelectorAll('.opt')];
+      opts.forEach(b=>b.addEventListener('click',()=>{
+        if(answered) return;
+        const i=+b.dataset.i;
+        if(sel.has(i)){ sel.delete(i); b.classList.remove('sel'); b.querySelector('.key').textContent=''; }
+        else { sel.add(i); b.classList.add('sel'); b.querySelector('.key').textContent='✓'; }
+      }));
+      actBtn.addEventListener('click',()=>{
+        if(answered){ next(); return; }
+        if(sel.size===0){ shake(actBtn); return; }
+        answered=true;
+        const correctSet=new Set(item.correctSet);
+        let ok=sel.size===correctSet.size;
+        sel.forEach(i=>{ if(!correctSet.has(i)) ok=false; });
+        opts.forEach((o,i)=>{
+          o.disabled=true; o.classList.remove('sel');
+          const key=o.querySelector('.key');
+          if(correctSet.has(i)){ o.classList.add('correct'); key.textContent='✓'; o.innerHTML+='<span class="tag">richtig</span>'; }
+          else if(sel.has(i)){ o.classList.add('wrong'); key.textContent='✕'; o.innerHTML+='<span class="tag">nicht richtig</span>'; }
+          else o.classList.add('dim');
+        });
+        award(ok,item); actBtn.textContent=advanceLabel;
+      });
+
+    } else if(item.type==='open'){
+      const ta=$('openText');
+      actBtn.addEventListener('click',()=>{
+        if(answered){ next(); return; }
+        answered=true; ta.disabled=true;
+        const fb=$('fb');
+        fb.classList.add('show','soft');
+        fb.innerHTML=`<span class="ftitle">Danke fürs Nachdenken</span>Es gibt hier kein Richtig oder Falsch – wichtig ist, dass du dir Gedanken gemacht hast. Nimm diesen Satz mit in den Alltag.`;
+        actBtn.textContent=advanceLabel;
+      });
+    }
+  }
+
+  function award(ok,item){
+    if(ok && item.scored) score++;
+    const fb=$('fb');
+    fb.classList.add('show',ok?'good':'soft');
+    const title=ok?'Richtig':'Nicht ganz';
+    const txt=ok?(item.fbGood||''):(item.fbBad||item.fbGood||'');
+    fb.innerHTML=`<span class="ftitle">${title}</span>${txt}`;
+    fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  function shake(el){
+    el.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:240});
+  }
+
+  function next(){ idx++; if(idx>=QUESTIONS.length) finish(); else render(); }
+
+  // ---- result ----
+  function finish(){
+    $('pfill').style.width='100%';
+    $('pcount').textContent=QUESTIONS.length+' / '+QUESTIONS.length;
+    const pct=Math.round((score/scoredCount)*100);
+    const passed=pct>=PASS_PERCENT;
+
+    $('resScore').textContent=score;
+    $('resMax').textContent=scoredCount;
+    $('resBreak').textContent=pct+' % der bewerteten Aufgaben richtig · Reflexionsfragen zählen nicht';
+
+    const d=new Date();
+    const dateStr=d.toLocaleDateString('de-AT',{day:'numeric',month:'long',year:'numeric'});
+
+    $('certName').textContent=student.name||'—';
+    $('certClass').textContent=student.klass?('Klasse '+student.klass):'';
+    $('certDate').textContent='Ausgestellt am '+dateStr;
+    $('certScore').textContent=score+' / '+scoredCount+' Punkten';
+
+    if(passed){
+      $('resEyebrow').textContent='Bestanden';
+      $('resTitle').textContent='Du hast es geschafft.';
+      $('resSub').textContent='Deine Antworten zeigen: Du hast Höflichkeit wirklich verstanden.';
+      $('certBar').className='cert-bar';
+      $('certMedal').className='cert-medal'; $('certMedal').textContent='✓';
+      $('certTitle').className='cert-title'; $('certTitle').textContent='Höflichkeits-Profi';
+      $('certBody').textContent='im Rahmen der Einheit zum sozialen Lernen ein sicheres Verständnis für Respekt, faires Miteinander und gute Umgangsformen gezeigt hat – im Denken wie im Handeln.';
+      $('retryNote').textContent='';
+    } else {
+      $('resEyebrow').textContent='Fast geschafft';
+      $('resTitle').textContent='Schon richtig gut.';
+      $('resSub').textContent='Für die Profi-Urkunde fehlt nur noch ein kleines Stück.';
+      $('certBar').className='cert-bar blue';
+      $('certMedal').className='cert-medal blue'; $('certMedal').textContent='→';
+      $('certTitle').className='cert-title blue'; $('certTitle').textContent='Höflichkeits-Talent';
+      $('certBody').textContent='sich in der Einheit zum sozialen Lernen engagiert mit Respekt und fairem Miteinander auseinandergesetzt hat und auf dem besten Weg zum Höflichkeits-Profi ist.';
+      $('retryNote').textContent='Tipp: Ab 80 % gibt es die Profi-Urkunde. Sieh dir die Erklärungen noch einmal an und versuch es erneut.';
+    }
+    show('result');
+  }
+
+  $('retryBtn').addEventListener('click',()=>{
+    idx=0; score=0; answered=false;
+    show('quiz'); render();
+  });
+
+  // ---- download ----
+  $('downloadBtn').addEventListener('click',()=>{
+    const cert=$('certificate'), btn=$('downloadBtn');
+    const label=btn.textContent; btn.textContent='Wird erstellt …'; btn.disabled=true;
+    html2canvas(cert,{scale:2,backgroundColor:'#ffffff',useCORS:true}).then(canvas=>{
+      const link=document.createElement('a');
+      const safe=(student.name||'Hoeflichkeit').replace(/[^a-zA-Z0-9äöüÄÖÜß]/g,'_');
+      link.download='Hoeflichkeits-Urkunde_'+safe+'.png';
+      link.href=canvas.toDataURL('image/png'); link.click();
+      btn.textContent=label; btn.disabled=false;
+    }).catch(()=>{ btn.textContent='Nochmal versuchen'; btn.disabled=false; });
   });
 
 })();
